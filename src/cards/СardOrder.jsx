@@ -35,60 +35,7 @@ function СardOrder() {
                                     <p>подтвержден</p>
                                 </div>
                             </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                    <p>ожидает расмотрение</p>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div className="bl_heitgh--crOrder"></div>

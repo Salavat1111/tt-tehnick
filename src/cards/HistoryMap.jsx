@@ -34,56 +34,8 @@ function СardOrder() {
                                 <div className="status__order">
                                 </div>
                             </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
-                            <div className="order__content">
-                                <p>Стиралка</p>
-                                <div className="status__order">
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
 

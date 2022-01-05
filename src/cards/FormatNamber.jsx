@@ -2,15 +2,22 @@ import React from "react";
 import NumberFormat from "react-number-format";
 import '../App.css';
 import './step/step.css'
-
-
-
+import { MainContext } from '../App';
 import { Button } from '.'
 
 function FormatNamber() {
+
     const [inputValue, setInputValue] = React.useState({})
 
     const nextDisabled = !inputValue.formattedValue || inputValue.formattedValue.includes('_')
+
+
+
+    const { onNextStep } = React.useContext(MainContext);
+    const onClickNextStep = () => {
+        onNextStep();
+    }
+
 
     return (
         <>
@@ -33,7 +40,9 @@ function FormatNamber() {
                         />
                         <div>
                         </div>
-                        <Button disabled={nextDisabled}>
+                        <Button
+                            onClick={onClickNextStep}
+                            disabled={nextDisabled}>
                             Далее
                         </Button>
                     </div>

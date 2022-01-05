@@ -1,8 +1,12 @@
 import React from "react";
 import './step.css';
 import { Button } from '../../cards'
+import { MainContext } from '../../App';
 
-function HomeRepair(props) {
+
+function HomeRepair({ props }) {
+    const { onNextStep } = React.useContext(MainContext);
+
     return (
         <div className="wr__homepage">
             <h1>Ремонт бытовой техники</h1>
@@ -10,7 +14,10 @@ function HomeRepair(props) {
                 Вы нашли нужное место, оставайтесь с нами, и мы обещаем,
                 что не пожалеете!
             </p>
-            <Button homerepair>Оставить заявку</Button>
+            <Button
+                onClick={onNextStep}
+                homerepair
+            >Оставить заявку</Button>
         </div>
     );
 }

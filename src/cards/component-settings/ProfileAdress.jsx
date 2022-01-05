@@ -1,7 +1,7 @@
 import React from "react";
 import './settings.css'
 import { Button, InputText, ButtonBack } from '../../cards'
-import Tree from './Tree';
+
 
 
 
@@ -36,7 +36,7 @@ function ProfileAdress() {
 
                 </Tree> */}
             </div>
-            <a href='./4'>
+            <a href='/rooms/4'>
                 <ButtonBack />
             </a>
             <div className="content__profile">

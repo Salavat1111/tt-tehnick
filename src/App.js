@@ -23,10 +23,10 @@ export const MainContext = React.createContext({});
 function App() {
 
   const items = [
-    { value: 'создать', href: './1', icon: <FaPlusCircle />, },
-    { value: 'заказы', href: './2', icon: <FaBorderAll />, },
-    { value: 'история', href: './3', icon: <FaLayerGroup />, },
-    { value: 'настройки', href: './4', icon: <FaRegSun />, },
+    { value: 'создать', href: '/rooms/1', icon: <FaPlusCircle />, },
+    { value: 'заказы', href: '/rooms/2', icon: <FaBorderAll />, },
+    { value: 'история', href: '/rooms/3', icon: <FaLayerGroup />, },
+    { value: 'настройки', href: '/rooms/4', icon: <FaRegSun />, },
   ];
 
   // const link = ['Мясные', 'Лесные', 'Саленные', 'Маленые', 'Крутые', 'Малые', 'Слепые', 'Топлые',]
@@ -38,8 +38,9 @@ function App() {
     setStep((prev) => prev + 1)
   }
 
-  const [step, setStep] = React.useState(1)
+  const [step, setStep] = React.useState(0)
   const Step = stepsComponents[step];
+
 
 
   return (
@@ -53,28 +54,32 @@ function App() {
           </div>
           <BtnBurger />
           <div className="content__repair">
+
             <Routes>
-              {/* <Route path="/" element={<HomeRepair />} /> */}
-              <Route path="/1" element={<Repair />} />
-              <Route path="/2" element={<СardOrder />} />
-              <Route path="/3" element={<HistoryMap />} />
-              <Route path="/4" element={<Settings />} />
-              <Route path="/2-2" element={< ProfileName />} />
-              <Route path="/3-3" element={< ProfileContact />} />
-              <Route path="/4-4" element={< ProfileEmail />} />
-              {/* <Route path="/5-5" element={< ProfileAdress link={link} />} /> */}
-              <Route path="/5-5" element={< ProfileAdress />} />
+              <Route path="/rooms/1" element={<Repair />} />
+              <Route path="/rooms/2" element={<СardOrder />} />
+              <Route path="/rooms/3" element={<HistoryMap />} />
+              <Route path="/rooms/4" element={<Settings />} />
+              <Route path="/rooms/2-2" element={< ProfileName />} />
+              <Route path="/rooms/3-3" element={< ProfileContact />} />
+              <Route path="/rooms/4-4" element={< ProfileEmail />} />
+              <Route path="/rooms/5-5" element={< ProfileAdress />} />
+              <Route path="/" element={<MainContext.Provider value={{ step, onNextStep }}>
+                <Step />
+              </MainContext.Provider>} />
             </Routes>
+
+
+            <NavigationBottom items={items} />
+            {/* <MainContext.Provider value={{ step, onNextStep }}>
+              <Step />
+            </MainContext.Provider> */}
+
           </div>
         </div>
 
-        {
-          // <Step />
-          // {repair === <HomeRepair /> ? <NavigationBottom items={items} /> : ''}
-        }
-        <MainContext.Provider value={{ step, onNextStep }}>
-          <Step />
-        </MainContext.Provider>
+
+
 
       </div>
     </>

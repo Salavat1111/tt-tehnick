@@ -5,7 +5,7 @@ import { Button, InputText, ButtonBack } from '..'
 function ProfileName() {
     return (
         <>
-            <a href='./4'>
+            <a href='/rooms/4'>
                 <ButtonBack />
             </a>
             <div className="content__profile">

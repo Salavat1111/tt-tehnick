@@ -28,7 +28,7 @@ function Settings() {
                                     <p>Фаттахов Салават</p>
                                 </div>
                                 <div className="forward__lastname">
-                                    <a href='/2-2'><FaChevronRight /></a>
+                                    <a href='/rooms/2-2'><FaChevronRight /></a>
                                 </div>
                             </div>
                             <p className="title__contacts">Контакты</p>
@@ -43,7 +43,7 @@ function Settings() {
                                     </div>
                                 </div>
                                 <div className="forward">
-                                    <a href='/3-3'><FaChevronRight /></a>
+                                    <a href='/rooms/3-3'><FaChevronRight /></a>
                                 </div>
 
                             </div>
@@ -58,7 +58,7 @@ function Settings() {
                                     </div>
                                 </div>
                                 <div className="forward">
-                                    <a href='/4-4'><FaChevronRight /></a>
+                                    <a href='/rooms/4-4'><FaChevronRight /></a>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@ function Settings() {
                                     </div>
                                 </div>
                                 <div className="forward">
-                                    <a href='/5-5'><FaChevronRight /></a>
+                                    <a href='/rooms/5-5'><FaChevronRight /></a>
                                 </div>
                             </div>
 

@@ -6,7 +6,7 @@ import { MainContext } from '../App';
 
 import { Button } from '../cards'
 
-function Registration() {
+function Registration({ disabled }) {
     const { onNextStep } = React.useContext(MainContext);
     const [inputValue, setInputValue] = React.useState('');
     const nextDisabled = !inputValue;
@@ -57,6 +57,7 @@ function Registration() {
                         <div>
                         </div>
                         <Button
+                            className={disabled}
                             disabled={nextDisabled}
                             onClick={onClickNextStep}
                         >Далее</Button>
