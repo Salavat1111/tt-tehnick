@@ -1,13 +1,13 @@
 import React from "react";
 import '../App.css';
 // import './step/step.css'
-import { MainContext } from '../App';
+import {MainContext} from '../App';
 
 
-import { Button } from '../cards'
+import {Button} from '../cards'
 
-function Registration({ disabled }) {
-    const { onNextStep } = React.useContext(MainContext);
+function Registration({disabled}) {
+    const {onNextStep} = React.useContext(MainContext);
     const [inputValue, setInputValue] = React.useState('');
     const nextDisabled = !inputValue;
 
@@ -36,8 +36,6 @@ function Registration({ disabled }) {
                         <input
                             placeholder="Имя"
                             className="field"
-                        // onChange={handleChangeInput}
-                        // value={inputValue}
                         />
                         <input
                             placeholder="Фамилия"
@@ -45,15 +43,6 @@ function Registration({ disabled }) {
                             onChange={handleChangeInput}
                             value={inputValue}
                         />
-
-                        {/* <InputText text="Имя" /> */}
-                        {/* <InputText text="Эл.почта" /> */}
-
-                        {/* <InputPassword text="Пароль" />
-                        <InputPassword text="Повторить пароль" />
-                        <div className="src__password">
-                            <p>Забыли пароль?</p>
-                        </div> */}
                         <div>
                         </div>
                         <Button
@@ -61,13 +50,9 @@ function Registration({ disabled }) {
                             disabled={nextDisabled}
                             onClick={onClickNextStep}
                         >Далее</Button>
-                        {/* <button
-                            disabled={nextDisabled}
-                            onClick={onClickNextStep}
-                        >Кнопка</button> */}
                     </div>
                     <div className="cont__bl--card--reg">
-                        <p>Уже есть аккаунт? <span>Войдите</span></p>
+                        <p>Уже есть аккаунт? <span>Войти</span></p>
                     </div>
                 </div>
             </div>

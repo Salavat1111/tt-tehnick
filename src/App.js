@@ -5,7 +5,7 @@ import { FaBorderAll } from "react-icons/fa"; // заказы
 import { FaLayerGroup } from "react-icons/fa"; // история
 import { FaRegSun } from "react-icons/fa"; // настройки
 
-import { PasswordForma, FormatNamber, Registration, HistoryMap, Repair, Settings, СardOrder, Logo, NavigationBottom, BtnBurger, HomeRepair, } from './cards'
+import { PasswordForma, FormatNamber, Registration, HistoryMap, Repair, Settings, СardOrder, Logo, NavigationBottom, BtnBurger, HomeRepair,Login, } from './cards'
 import { ProfileContact, ProfileEmail, ProfileAdress, ProfileName } from './cards/component-settings';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
@@ -64,6 +64,7 @@ function App() {
               <Route path="/rooms/3-3" element={< ProfileContact />} />
               <Route path="/rooms/4-4" element={< ProfileEmail />} />
               <Route path="/rooms/5-5" element={< ProfileAdress />} />
+              <Route path="/l" element={< Login />} />
               <Route path="/" element={<MainContext.Provider value={{ step, onNextStep }}>
                 <Step />
               </MainContext.Provider>} />

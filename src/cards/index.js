@@ -12,6 +12,7 @@ export { default as Logo } from './Logo';
 export { default as Logo2 } from './component-btn-menu/Logo2';
 export { default as NavigationBottom } from './NavigationBottom';
 export { default as Registration } from './Registration';
+export { default as Login } from './Login';
 export {default as Repair} from './CreateOrder';
 export { default as Settings } from './Settings';
 export { default as СardOrder } from './СardOrder';
