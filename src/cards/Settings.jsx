@@ -2,23 +2,10 @@ import React from "react";
 import '../App.css';
 
 import {FaChevronRight} from "react-icons/fa"; //стрелка вправо
-import axios from "axios"; //телефон
-import Cookies from 'js-cookie';
 import TextInput from "./TextInput";
 import AddressInput from "./AddressInput";
 import EmailInput from "./EmailInput";
-
-async function getCurrentUserInfo() {
-    const url = `http://localhost:8050/fixer/api/user/currentUser`;
-    const res = await axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${Cookies.get('access_token')}`,
-            'X-CSRF-TOKEN': Cookies.get('csrf_token')
-        }
-    });
-    return res.data;
-}
-
+import {getCurrentUserInfo} from "../servises/UserService";
 
 function Settings() {
     const [user, setUser] = React.useState({})
@@ -28,11 +15,11 @@ function Settings() {
     function getInputs(parameters) {
         return parameters.map(p => {
             if (p.type === "EMAIL") {
-                return <EmailInput paramName={p.name} value={p.value} editLink={"/editLink"}/>
+                return <EmailInput paramName={p.name} value={p.value} editLink={"/change_e"}/>
             }else if (p.type === "ADDRESS") {
-                return <AddressInput paramName={p.name} value={p.value} editLink={"/editLink"}/>
+                return <AddressInput paramName={p.name} value={p.value} editLink={"/change_a"}/>
             } else {
-                return <TextInput paramName={p.name} value={p.value} editLink={"/editLink"}/>
+                return <TextInput paramName={p.name} value={p.value} editLink={"/change_t"}/>
             }
         });
     }
@@ -43,19 +30,15 @@ function Settings() {
             setUser(response);
             setPhoneNumber(response["phoneNumber"])
             setParams(response["parameters"])
-            // if (parameters) {
-            //     parameters.map(p => {
-            //         <TextInput paramName={p.name} value={p.value} editLink={"/editLink"}/>
-            //     });
-            //     setParams(parameters)
-            // }
         })
     };
 
     React.useEffect(() => {
         loadFromServer()
     }, [setUser, setPhoneNumber, setParams]);
+
     var inputs = getInputs(params)
+
     return (
         <div className="wrapper">
             <div className="wrapper__content">

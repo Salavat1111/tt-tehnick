@@ -38,10 +38,14 @@ function App() {
     setStep((prev) => prev + 1)
   }
 
+  function getRoutersToEditUserParams() {
+
+  }
+
   const [step, setStep] = React.useState(0)
   const Step = stepsComponents[step];
 
-
+ let routersToEditUserParams = getRoutersToEditUserParams();
 
   return (
     <>
@@ -60,10 +64,11 @@ function App() {
               <Route path="/rooms/2" element={<СardOrder />} />
               <Route path="/rooms/3" element={<HistoryMap />} />
               <Route path="/rooms/4" element={<Settings />} />
-              <Route path="/rooms/2-2" element={< ProfileName />} />
-              <Route path="/rooms/3-3" element={< ProfileContact />} />
-              <Route path="/rooms/4-4" element={< ProfileEmail />} />
-              <Route path="/rooms/5-5" element={< ProfileAdress />} />
+              {routersToEditUserParams}
+              {/*<Route path="/rooms/2-2" element={< ProfileName />} />*/}
+              {/*<Route path="/rooms/3-3" element={< ProfileContact />} />*/}
+              {/*<Route path="/rooms/4-4" element={< ProfileEmail />} />*/}
+              {/*<Route path="/rooms/5-5" element={< ProfileAdress />} />*/}
               <Route path="/l" element={< Login />} />
               <Route path="/" element={<MainContext.Provider value={{ step, onNextStep }}>
                 <Step />

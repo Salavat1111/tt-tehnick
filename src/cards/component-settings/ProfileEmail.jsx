@@ -1,46 +1,29 @@
 import React from "react";
 import './settings.css'
-import {Button, InputText, ButtonBack} from '../../cards'
-import {patch} from "axios";
-import Cookies from "js-cookie";
+import {Button, ButtonBack} from '../../cards'
+import updateParameterValue from "../../servises/UserService";
+import {userSettingsUrl} from "../../common/AppConstants";
 
-function ProfileEmail() {
-    async function updateEmailValue() {
-        console.log("asdasd")
-        await patch('http://localhost:8050/fixer/api/user/p', {
-            phoneNumber: "89276976454",
-            parameters: [{
-                name: "Email",
-                value: "value@sdf.ru"
-            }]
-        }, {
-            headers: {
-                Authorization: "Bearer " + Cookies.get('access_token'),
-                'X-CSRF-TOKEN': Cookies.get('csrf_token'),
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Access-Control-Allow-Origin": true
-            }
-        }).then(response => {
-            console.log('response.data')
-            console.log(response)
-        });
-    }
-
-
+function ProfileParameter() {
+    const [email, setEmail] = React.useState("");
     return (
         <>
-            <a href='/rooms/4'>
+            <a href={userSettingsUrl}>
                 <ButtonBack/>
             </a>
             <div className="content__profile">
                 <div className="">
                     <div className="input__regstr">
                         <h3>Поменять адрес почты</h3>
-                        <InputText text="введите email"/>
+                        <div className="display__input">
+                            <input onChange={(e) => {
+                                setEmail(e.target.value)}}
+                                   type="text"
+                                   name="" placeholder={"введите email"}/>
+                        </div>
                     </div>
                     <div>
-                        <Button onClick={updateEmailValue}>изменить</Button>
+                        <Button onClick={() => updateParameterValue("Email", email)}>изменить</Button>
                     </div>
                 </div>
             </div>
@@ -48,4 +31,31 @@ function ProfileEmail() {
     );
 }
 
-export default ProfileEmail;
+// function ProfileEmail() {
+//     const [email, setEmail] = React.useState("");
+//     return (
+//         <>
+//             <a href='/rooms/4'>
+//                 <ButtonBack/>
+//             </a>
+//             <div className="content__profile">
+//                 <div className="">
+//                     <div className="input__regstr">
+//                         <h3>Поменять адрес почты</h3>
+//                         <div className="display__input">
+//                             <input onChange={(e) => {
+//                                 setEmail(e.target.value)}}
+//                                    type="text"
+//                                    name="" placeholder={"введите email"}/>
+//                         </div>
+//                     </div>
+//                     <div>
+//                         <Button onClick={() => updateParameterValue("Email", email)}>изменить</Button>
+//                     </div>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
+
+export default ProfileParameter;
