@@ -1,7 +1,7 @@
 import React from "react";
 import '../App.css';
 
-import {FaChevronRight} from "react-icons/fa"; //стрелка вправо
+import {FaChevronRight} from "react-icons/fa";
 import TextInput from "./TextInput";
 import AddressInput from "./AddressInput";
 import EmailInput from "./EmailInput";
@@ -16,7 +16,7 @@ function Settings() {
         return parameters.map(p => {
             if (p.type === "EMAIL") {
                 return <EmailInput paramName={p.name} value={p.value} editLink={"/change_e"}/>
-            }else if (p.type === "ADDRESS") {
+            } else if (p.type === "ADDRESS") {
                 return <AddressInput paramName={p.name} value={p.value} editLink={"/change_a"}/>
             } else {
                 return <TextInput paramName={p.name} value={p.value} editLink={"/change_t"}/>
@@ -79,7 +79,6 @@ function Settings() {
 
                             {/*</div>*/}
 
-
                             {/*<div className="order__content">*/}
                             {/*    <div className="container__fasource">*/}
                             {/*        <div className="svg__content">*/}
@@ -114,7 +113,6 @@ function Settings() {
                     </div>
 
                 </div>
-                {/* <NavigationBottom /> */}
                 <div className="bl_heitgh--crOrder"></div>
             </div>
 
