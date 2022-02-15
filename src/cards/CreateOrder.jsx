@@ -6,9 +6,10 @@ import {Button, InputTimeDate, InputText,} from '../cards'
 import {SortPopup, QuestionBlock} from "./components";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {serverUrl} from "../common/AppConstants";
 
 async function getTechnicalTypes() {
-    const url = `http://localhost:8050/fixer/api/attrs/1`;
+    const url = serverUrl + `/fixer/api/attrs/1`;
     const res = await axios.get(url, {
         headers: {
             Authorization: `Bearer ${Cookies.get('access_token')}`,
@@ -18,9 +19,22 @@ async function getTechnicalTypes() {
     return res.data;
 }
 
-async function createOrder(userId, order) {
+async function createOrder(order) {
     console.log("createOrderFunc")
-    await axios.post(`/fixer/api/user/${userId}`, order, {
+    await axios.post(serverUrl + `/fixer/api/order/create`, order, {
+        headers: {
+            Authorization: "Bearer " + Cookies.get('access_token'),
+            'X-CSRF-TOKEN': Cookies.get('csrf_token')
+        }
+    }).then(response => {
+        console.log('response.data')
+        console.log(response.data)
+    })
+}
+
+async function getOrderModel() {
+    console.log("getOrderModel")
+    await axios.post(serverUrl + `/fixer/api/order/model`, {}, {
         headers: {
             Authorization: "Bearer " + Cookies.get('access_token'),
             'X-CSRF-TOKEN': Cookies.get('csrf_token')
@@ -75,17 +89,40 @@ function CreateOrder() {
                 <textarea onChange={(e) => setComment(e.target.value)}
                           placeholder="напишите что случилось"/>
                 <Button onClick={(e) => {
-
                     console.log(address)
                     console.log(technicType)
                     console.log(date)
                     console.log(time)
                     console.log(comment)
-                    const newOrder = {}
-                    newOrder["status"] = "OPEN"
-                    newOrder["parameters"] = []
-                    const userId = 2
-                    const orderAddress = {"":""}
+                    const order = {
+                        "executor": "89275785698", // change to null and assign on back
+                        "status": "OPEN",
+                        "parameters": [{
+                                "name": "Ваш Адрес",
+                                "attrId": "11",
+                                "type": "TEXT",
+                                "value": address
+                            }, {
+                                "name": "Что чиним",
+                                "attrId": "1",
+                                "type": "LIST",
+                                "value": technicType
+                            }, {
+                                "name": "Когда приехать",
+                                "attrId": "8",
+                                "type": "DATE",
+                                "value": date
+                            }, {
+                                "name": "Напишите что произошло",
+                                "attrId": "6",
+                                "type": "TEXT",
+                                "value": comment
+                            }
+                        ]
+                    }
+                    console.log('order')
+                    
+                    createOrder(order)
                     // createOrder(userId, newOrder);
                 }} disabled={false}>отправить</Button>
             </div>
