@@ -12,6 +12,8 @@ function PasswordForma() {
 
     return (
         <>
+        <div className="wrapper__content-password">
+            <div className="content-registr-password">
             <div className="content">
                 <div>
                     <div>
@@ -20,7 +22,7 @@ function PasswordForma() {
                     </div>
                 </div>
                 <div className="display__input--field">
-                    <div className="input__regstr">
+                    <div className="input__regstr-password">
 
 
 
@@ -31,10 +33,16 @@ function PasswordForma() {
                         </div>
                         <div>
                         </div>
+                        <div className="bl__password">
                         <Button>Далее</Button>
+                        </div>
                     </div>
-
+                    <div className="cont__bl--card--reg">
+                        <p>Уже есть аккаунт? <span>Войдите</span></p>
+                    </div>
                 </div>
+            </div>
+            </div>
             </div>
         </>
     );

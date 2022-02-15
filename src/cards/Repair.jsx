@@ -14,7 +14,8 @@ import { SortPopup, QuestionBlock } from "./components";
 function Repair() {
     return (
 
-        // <div className="content__repair">
+        <div className="wrapper__content-repair">
+        <div className="content-registr-repair">
         <div className="content__repair">
             <div>
                 <img className="repair__page-img" alt="" src={logos} />
@@ -37,15 +38,19 @@ function Repair() {
                     />
                 </div>
                 <textarea placeholder="напишите что случилось"></textarea>
-                <div>
+               
+
+            </div>
+            {/* <div className="bl_heitgh--crOrder"></div> */}
+            
+        </div>
+ 
+      </div>
+      <div>
                     <Button>отправить</Button>
                     {/* <Button outline>отправить</Button> */}
                 </div>
-
-            </div>
-            <div className="bl_heitgh--crOrder"></div>
-        </div>
-        // </div>
+      </div>
     );
 }
 

@@ -6,7 +6,7 @@ import { MainContext } from '../App';
 
 
 
-function Button({ children, disabled, onClick, outline, homerepair, }) {
+function Button({ children, disabled, onClick, outline, homerepair,}) {
     // const { onNextStep, nextDisabled } = React.useContext(MainContext);
     // const onClickNextStep = () => {
     //     onNextStep();
@@ -17,6 +17,7 @@ function Button({ children, disabled, onClick, outline, homerepair, }) {
         <div>
             <button
                 // disabled={disabled}
+               
                 disabled={disabled}
                 onClick={onClick}
                 className={classNames('btn__burger', {

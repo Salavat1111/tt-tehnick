@@ -160,32 +160,7 @@ img{
 	text-align: center;
 	font-weight: 100;
 }
-.bl__registr p{
-	margin: -8px 0px 35px 0px;
-    text-align: center;
-    color: #959595;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-}
-.input__regstr input{
-  margin: 0px 0px 10px 0px;
-  border-radius: 10px;
-  width: 310px;
-  height: 50px;
-  border: 1px solid #ffffff;
-  background: #ffffff;
-  padding: 0px 0px 3px 20px;
-  box-shadow: 0px 4px 22px -10px rgb(0 0 3 / 58%);
-}
-.input__regstr{
-  width: 100%;
-  height: auto;
-  padding: 0px 0px 30px 0px;
-  background: #c3dfd9;
-  border-radius: 10px;
-  margin: auto;
-}
+
 .icons__style-one{
 	color: #C4C4C4;
     position: absolute;
@@ -208,7 +183,6 @@ a{
   font-weight: 400;
 }
 
-
 .cont__bl-reg p{
      text-align: center;
      color: #959595;
@@ -226,16 +200,47 @@ a{
     display: flex;
     justify-content: center;
 }
-
+.content__repair{
+  padding-bottom: 40px;
+}
 /*===========стили div в cards Registration.jsx=============*/
+.bl__registr p{
+	margin: -8px 0px 35px 0px;
+    text-align: center;
+    color: #959595;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+}
+.input__regstr input{
+    margin: 7px auto;
+    border-radius: 15px;
+    width: 410px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    padding: 0px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+}
+.input__regstr{
+  width: 100%;
+  height: auto;
+  padding: 0px 0px 1px 0px;
+  border-radius: 10px;
+  margin: auto;
+}
 .zgl__login--card--reg{
   margin-top: 34px;
-  margin-bottom: 11px;
-  font-size: 24px;
-  font-family: 'Nunito Sans', sans-serif;
-  text-align: center;
-  font-weight: 100;
+    margin-bottom: 40px;
+    font-size: 29px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+    font-weight: 100;
+    padding-top: 40px;
 }
+.blok__button--registr{
+  margin-top: 75px;
+}
+
 
 .cont__bl--card--reg{
   margin-bottom: 43px;
@@ -244,11 +249,95 @@ a{
 }
 .cont__bl--card--reg p{
   text-align: center;
-  color: #959595;
+  color: #ffffff;
 }
 .cont__bl--card--reg span{
-  color: #577CFF;
+  color: #FFED50;
 }
+.wrapper__content-registr{
+  width: 600px;
+  height: 450px;
+  background: #5A5A5A;
+  margin: auto;
+  border-radius: 20px;
+}
+.content-registr{
+  width: 600px;
+  height: 310px;
+  background: #fff;
+  border-radius: 20px;
+}
+/*------------Блок Набор номера при регистрации-------------*/
+.wrapper__content-namber{
+  width: 600px;
+  height: 450px;
+  background: #5A5A5A;
+  margin: auto;
+  border-radius: 20px;
+}
+.content-registr-namber{
+  width: 600px;
+  height: 310px;
+  background: #fff;
+  border-radius: 20px;
+}
+.bl__namber{
+  margin-top: 151px;
+}
+.input__regstr-namber input{
+    margin: 69px auto;
+    border-radius: 15px;
+    width: 410px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    padding: 0px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+}
+.input__regstr-namber{
+  width: 100%;
+  height: auto;
+  padding: 0px 0px 0px 0px;
+  border-radius: 10px;
+
+}
+/*------------Блок Набор номера при регистрации-------------*/
+/*------------Блок Набор password при регистрации-------------*/
+.wrapper__content-password{
+  width: 600px;
+  height: 450px;
+  background: #5A5A5A;
+  margin: auto;
+  border-radius: 20px;
+}
+.content-registr-password{
+  width: 600px;
+  height: 310px;
+  background: #fff;
+  border-radius: 20px;
+}
+.bl__password{
+  margin-top: 115px;
+}
+.input__regstr-password input{
+    margin: 4px auto;
+    border-radius: 15px;
+    width: 410px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    padding: 0px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+}
+.input__regstr-namber{
+  width: 100%;
+  height: auto;
+  padding: 0px 0px 0px 0px;
+  border-radius: 10px;
+
+}
+/*------------Блок Набор password при регистрации-------------*/
+
 /*===========стили div в cards Registration.jsx=============*/
 /*Стили компонента Button*/
 .btn__burger{
@@ -266,12 +355,12 @@ a{
 .btn__burger  {
     font-size: 21px;
     padding: 6px;
-    min-width: 140px;
+    min-width: 220px;
     /* max-width: 200px; */
     height: 47px;
     border-radius: 8px;
     border: 0px solid;
-    background: #ffeb4994;
+    background: #ffeb49;
     box-shadow: 0px 1px 4px 1px rgb(217 176 0 / 39%);
 }
 .button--outline{
@@ -289,6 +378,22 @@ a{
 /*Стили компонента Button*/
 
 /*===========стили div в cards Repair.jsx=============*/
+/*------------Блок repair max-width: 1280-------------*/
+.wrapper__content-repair{
+  width: 600px;
+  height: auto;
+  background: #5A5A5A;
+  margin: auto;
+  border-radius: 20px;
+  padding-bottom: 40px;
+}
+.content-registr-repair{  
+  width: 600px;
+  height: auto;
+  background: #fff;
+  border-radius: 20px;
+}
+/*------------Блок repair max-width: 1280-------------*/
 .repair__page-img  {
   width: 183px;
   height: 186px;
@@ -296,14 +401,15 @@ a{
 
 
 .input__time-date input{
-  margin: 2px 2px 10px 2px;
-  border-radius: 10px;
-  width: 152px;
-  height: 55px;
-  border: 1px solid #e1e1e1;
-  background: #ffffff;
-  padding: 0px 0px 3px 20px;
-  box-shadow: 0px 4px 22px -10px rgb(0 0 3 / 58%);
+  margin: 8px 2px 10px 2px;
+  border-radius: 15px;
+  width: 200px;
+  height: 50px;
+  border: 0px solid #ffffff;
+  background: #EBEBEB;
+  color: rgb(117 117 117);
+  padding: 0px 0px 3px 52px;
+  box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
 }
 .input__time-date {
   display: flex;
@@ -315,17 +421,17 @@ a{
   justify-content: center;
 }   
 textarea{
-  border: 1px solid #f1f1f1;
-  padding: 12px;
-  width: 310px;
-  font-size: 20px;
-  height: 123px;
-  background: #ffffff;
-  border-radius: 10px;
-  margin: 0px auto;
-  margin-bottom: 20px;
   display: block;
-  box-shadow: 0px 1px 4px 1px rgb(34 60 80 / 20%);
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  width: 410px;
+  height: 100px;
+  border: 0px solid #ffffff;
+  background: #EBEBEB;
+  color: rgb(117 117 117);
+  padding: 14px 0px 3px 52px;
+  box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
 
 }
 /*===========стили div в cards Repair.jsx=============*/
@@ -334,13 +440,13 @@ textarea{
 /*===========стили div в cards СardOrder.jsx=============*/
 .order__content-telefon{
   display: flex;
-  justify-content: space-between; 
+  /* justify-content: space-between;  */
   width: 100%;
-  height: 50px;
+  height: 100px;
   background: #ffffff;
   margin-top: 18px;
-  margin-bottom: 10px;
-  padding: 14px;
+  margin-bottom: 0px;
+  padding: 0px 0px 0px 56px;
 }
 .order__content{
   display: flex;
@@ -397,7 +503,67 @@ textarea{
 .forward svg{
   color: black;
 }
-
+/*===========стили Settings max-width 1280px=============*/
+.wrapper__content-settings{
+  width: 1000px;
+  height: auto;
+  background: #5A5A5A;
+  margin: auto;
+  border-radius: 20px;
+  padding-bottom: 15px;
+}
+.content-registr-settings{  
+  width: 1000px;
+  height: auto;
+  background: #fff;
+  border-radius: 20px;
+  padding-bottom: 40px;
+}
+.block__setting-input input{
+  width: 360px;
+  padding: 16px 0px 16px 20px;
+  margin: 0px 20px 0px 0px;
+  background: #EBEBEB;
+  border: 0px;
+  border-radius: 15px;
+  color: black;
+}
+.block__setting-input input::placeholder {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+}
+.block__setting-input p{
+  position: relative;
+  font-weight: 100;
+  left: 22px;
+  color: #979797;
+}
+.bl__items-user{margin-left: 50px;}
+.btn__setting{
+  display: flex;
+  justify-content: center;
+}
+.btn__setting__container{
+  margin: 0px 20px 0px 20px;;
+}
+.text__setting{
+  display: flex;
+  justify-content: center;
+}
+.text__setting p{
+  color: #ffffff;
+ }
+.text__setting span{
+ color: #ffeb49;
+}
+.lgk__setting--edit-block{
+  margin: 0px 0px 0px 52px;
+}
+.lgk__setting--edit-block p{
+  margin-top: 10px;
+}
+/*===========стили Settings max-width 1280px=============*/
 /*===========стили div в cards Settings.jsx=============*/ /*объеденил стили двух компонентов в одном*/
 /*===========стили div в cards СardOrder.jsx=============*/
 

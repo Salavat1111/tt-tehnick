@@ -60,20 +60,18 @@ function App() {
               <Route path="/rooms/2" element={<СardOrder />} />
               <Route path="/rooms/3" element={<HistoryMap />} />
               <Route path="/rooms/4" element={<Settings />} />
-              <Route path="/rooms/2-2" element={< ProfileName />} />
+              {/* <Route path="/rooms/2-2" element={< ProfileName />} />
               <Route path="/rooms/3-3" element={< ProfileContact />} />
               <Route path="/rooms/4-4" element={< ProfileEmail />} />
-              <Route path="/rooms/5-5" element={< ProfileAdress />} />
+              <Route path="/rooms/5-5" element={< ProfileAdress />} /> */}
               <Route path="/" element={<MainContext.Provider value={{ step, onNextStep }}>
                 <Step />
               </MainContext.Provider>} />
             </Routes>
 
 
-            <NavigationBottom items={items} />
-            {/* <MainContext.Provider value={{ step, onNextStep }}>
-              <Step />
-            </MainContext.Provider> */}
+            {/* <NavigationBottom items={items} /> */}
+           
 
           </div>
         </div>

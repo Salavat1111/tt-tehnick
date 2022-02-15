@@ -21,8 +21,8 @@ function Registration({ disabled }) {
     }
 
     return (
-        <>
-            <div className="content">
+        <div className="wrapper__content-registr">
+            <div className="content-registr">
                 <div>
                     <div>
                         <h1 className="zgl__login--card--reg">Регистрация</h1>
@@ -36,8 +36,7 @@ function Registration({ disabled }) {
                         <input
                             placeholder="Имя"
                             className="field"
-                        // onChange={handleChangeInput}
-                        // value={inputValue}
+                      
                         />
                         <input
                             placeholder="Фамилия"
@@ -56,11 +55,13 @@ function Registration({ disabled }) {
                         </div> */}
                         <div>
                         </div>
+                        <div className="blok__button--registr">
                         <Button
                             className={disabled}
                             disabled={nextDisabled}
                             onClick={onClickNextStep}
                         >Далее</Button>
+                        </div>
                         {/* <button
                             disabled={nextDisabled}
                             onClick={onClickNextStep}
@@ -71,7 +72,7 @@ function Registration({ disabled }) {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

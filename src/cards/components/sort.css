@@ -10,9 +10,8 @@
     margin-top: 10;
     top: 54%;
     left: 13%;
-
     box-shadow: 0px 4px 15px -8px rgb(0 0 3 / 50%);
-z-index: 1;
+    z-index: 1;
 }
 .sortpopup__block{
     display: flex;
@@ -25,18 +24,16 @@ li .active{
     border-radius: 10px;
 }
 .sort__span{
-    height: 53px;
-    width: 310px;
-    border-radius: 10px;
-    padding: 14px 0px 0px 16px;
-    /* background: aquamarine; */
-    /* margin-bottom: 9px; */
-    border: 1px solid #e1e1e1;
-    background: #ffffff;
-    /* padding: 0px 0px 3px 20px; */
-    /* background: url(); */
-    box-shadow: 0px 4px 22px -10px rgb(0 0 3 / 58%);
+    border-radius: 15px;
+    width: 410px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    color: rgb(117 117 117);
+    padding: 12px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
 }
+
 li{
     list-style-type: none;
     padding: 3px 0px 3px 0px;
@@ -103,7 +100,6 @@ li{
     margin-top: 10;
     top: 41%;
     left: 13%;
-
     box-shadow: 0px 4px 15px -8px rgb(0 0 3 / 50%);
 }
 .sortpopup__wrapper-quest p{
