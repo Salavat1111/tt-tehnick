@@ -1,18 +1,5 @@
 import React from "react";
 import '../App.css';
-// import logos from '../img/2.png';
-// import Button from '../Button.jsx'
-// import InputTimeDate from "../InputTimeDate";
-// import InputText from "../InputText";
-
-
-// import Logo from "../Logo";
-// import BtnBurger from '../BtnBurger';
-
-
-
-
-
 
 function СardOrder() {
     return (
