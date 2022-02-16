@@ -21,6 +21,8 @@ function FormatNamber() {
 
     return (
         <>
+           <div className="wrapper__content-namber">
+            <div className="content-registr-namber">
             <div className="content">
                 <div>
                     <div>
@@ -29,7 +31,7 @@ function FormatNamber() {
                     </div>
                 </div>
                 <div className="display__input--field">
-                    <div className="input__regstr">
+                    <div className="input__regstr-namber">
                         <NumberFormat
                             className="field"
                             format='+# (###) ###-##-##'
@@ -40,13 +42,20 @@ function FormatNamber() {
                         />
                         <div>
                         </div>
+                        <div className="bl__namber">
                         <Button
                             onClick={onClickNextStep}
                             disabled={nextDisabled}>
                             Далее
                         </Button>
+                        </div>
+                    </div>
+                    <div className="cont__bl--card--reg">
+                        <p>Уже есть аккаунт? <span>Войдите</span></p>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         </>
     );

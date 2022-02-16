@@ -6,13 +6,10 @@ import { MainContext } from '../App';
 
 
 
-function Button( props) {
+function Button({ children, disabled, onClick, outline, homerepair,}) {
     // const { onNextStep, nextDisabled } = React.useContext(MainContext);
     // const onClickNextStep = () => {
     //     onNextStep();
-//
-    //
-    //
     // }
 
 
@@ -20,14 +17,15 @@ function Button( props) {
         <div>
             <button
                 // disabled={disabled}
-                disabled={props.disabled}
-                onClick={props.onClick}
+
+                disabled={disabled}
+                onClick={onClick}
                 className={classNames('btn__burger', {
-                    'button--outline': props.outline,
-                    'button--homerepair': props.homerepair,
-                    'button--disabled': props.disabled,
+                    'button--outline': outline,
+                    'button--homerepair': homerepair,
+                    'button--disabled': disabled,
                 })}>
-                {props.children}
+                {children}
             </button>
         </div>
     );
