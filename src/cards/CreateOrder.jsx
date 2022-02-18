@@ -89,11 +89,6 @@ function CreateOrder() {
                 <textarea onChange={(e) => setComment(e.target.value)}
                           placeholder="напишите что случилось"/>
                 <Button onClick={(e) => {
-                    console.log(address)
-                    console.log(technicType)
-                    console.log(date)
-                    console.log(time)
-                    console.log(comment)
                     const order = {
                         "executor": "89275785698", // change to null and assign on back
                         "status": "OPEN",
@@ -121,7 +116,6 @@ function CreateOrder() {
                         ]
                     }
                     console.log('order')
-                    
                     createOrder(order)
                     // createOrder(userId, newOrder);
                 }} disabled={false}>отправить</Button>

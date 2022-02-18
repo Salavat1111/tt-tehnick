@@ -1,24 +1,27 @@
-import {FaChevronRight, FaEdit} from "react-icons/fa";
+import React from "react";
 
-function TextInput(props) {
-    let {paramName, value, editLink, img} = props;
-    if (!img) {
-        img = <FaEdit/>
-    }
-    return <div className="order__content">
-        <div className="container__fasource">
-            <div className="svg__content">
-                {img}
+function TextInput({paramName, placeHolder, img, editable, handleParam, propertyKey}) {
+    return editable ?
+        (<div className="block__setting-input">
+            <p>{paramName}</p>
+            <input onChange={(e) => {
+                console.log(e.target.value)
+                if (handleParam) {
+                    handleParam(propertyKey, e.target.value)
+                }
+            }} placeholder={placeHolder}/>
+        </div>) : (<div className="order__content">
+            <div className="container__fasource">
+                <div className="svg__content">
+                    {img}
+                </div>
+                <div className="">
+                    <p className="title__menu">{paramName}</p>
+                    <p className="title__text">{placeHolder}</p>
+                </div>
             </div>
-            <div className="">
-                <p className="title__menu">{paramName}</p>
-                <p className="title__text">{value}</p>
-            </div>
-        </div>
-        <div className="forward">
-            <a href={editLink}><FaChevronRight/></a>
-        </div>
-    </div>;
+
+        </div>);
 }
 
 export default TextInput;

@@ -1,34 +1,71 @@
 import React from "react";
 import '../App.css';
-import { Button, InputText } from '../cards'
-import { FaEnvelope } from "react-icons/fa"; //почта
-import { FaMapMarkerAlt } from "react-icons/fa"; //геолокация
-import { FaPhoneAlt } from "react-icons/fa"; //телефон
-
-
-
+import {Button} from '../cards'
+import {FaPhoneAlt} from "react-icons/fa"; //почта //геолокация //телефон
 import TextInput from "./TextInput";
 import AddressInput from "./AddressInput";
 import EmailInput from "./EmailInput";
 import {getCurrentUserInfo} from "../servises/UserService";
+import axios from "axios";
+import {serverUrl} from "../common/AppConstants";
+import Cookies from "js-cookie";
 
 function Settings() {
     const [user, setUser] = React.useState({})
-    const [params, setParams] = React.useState([])
-    const [phoneNumber, setPhoneNumber] = React.useState("")
-    const [visibleEdit, setVisibleEdit] = React.useState(false)
+    const [editable, setEditable] = React.useState(false)
     const onClickSettingVisible = () => {
-        setVisibleEdit(!visibleEdit)
+        setEditable(!editable)
     };
 
+    function changeUserProperty(property, value){
+        let newUser = {...user}
+        newUser[property] = value;
+        setUser(newUser);
+    }
+
+    function changeUserParameter(property, value){
+        let newParams = [...user["parameters"]]
+        for(let p in user["parameters"]) {
+            if (newParams[p].name == property) {
+               let newParam = newParams[p];
+               newParam["value"] = value;
+               newParams[p] = newParam
+               break
+            }
+        }
+        let newUser = {...user}
+        newUser["parameters"] = newParams
+        setUser(newUser);
+    }
+
+    async function updateUser(user) {
+        console.log("updateUser")
+        await axios.patch(serverUrl + `/fixer/api/user/update`, user, {
+            headers: {
+                Authorization: "Bearer " + Cookies.get('access_token'),
+                'X-CSRF-TOKEN': Cookies.get('csrf_token')
+            }
+        }).then(response => {
+            console.log('response.data')
+            console.log(response.data)
+        })
+    }
+
     function getInputs(parameters) {
-        return parameters.map(p => {
+        return parameters?.map(p => {
+            let inputParams = {
+                paramName: p.name,
+                placeHolder: p.value,
+                editable: editable,
+                handleParam:changeUserParameter,
+                propertyKey:p.name
+            }
             if (p.type === "EMAIL") {
-                return <EmailInput paramName={p.name} value={p.value} editLink={"/change_e"}/>
+                return <EmailInput {...inputParams} />
             } else if (p.type === "ADDRESS") {
-                return <AddressInput paramName={p.name} value={p.value} editLink={"/change_a"}/>
+                return <AddressInput {...inputParams} />
             } else {
-                return <TextInput paramName={p.name} value={p.value} editLink={"/change_t"}/>
+                return <TextInput {...inputParams} img={<FaPhoneAlt/>}/>
             }
         });
     }
@@ -37,16 +74,14 @@ function Settings() {
         getCurrentUserInfo().then(response => {
             console.log('loadFromServer: ' + response);
             setUser(response);
-            setPhoneNumber(response["phoneNumber"])
-            setParams(response["parameters"])
         })
     };
 
     React.useEffect(() => {
         loadFromServer()
-    }, [setUser, setPhoneNumber, setParams]);
+    }, [setUser]);
 
-    var inputs = getInputs(params)
+    let inputs = getInputs(user["parameters"])
 
     return (
         <>
@@ -66,86 +101,40 @@ function Settings() {
 
                                     <div className="block__setting-input">
                                         <p>Имя</p>
-                                        <input placeholder="Cалават"/>
+                                        <input onChange={(e) =>
+                                            changeUserProperty("firstName", e.target.value )}
+                                               placeholder={user["firstName"]}/>
                                     </div>
                                     <div className="block__setting-input">
                                         <p>Фамилия</p>
-                                        <input placeholder="Фаттахов"/>
+                                        <input onChange={(e) =>
+                                            changeUserProperty("secondName", e.target.value )}
+                                               placeholder={user["secondName"]}/>
                                     </div>
                                 </div>
-                                {visibleEdit ?
-                                    <div className="lgk__setting--edit-block">
-                                        <div className="block__setting-input">
-                                            <p>Телефон</p>
-                                            <input placeholder="+7 (900) 393-22-33"/>
-                                        </div>
-                                        <div className="block__setting-input">
-                                            <p>Почта</p>
-                                            <input placeholder="ropc@gmail.com"/>
-                                        </div>
-                                        <div className="block__setting-input">
-                                            <p>Адрес</p>
-                                            <input placeholder="г. Самара, ул. Корастелева 14, кв-7"/>
-                                        </div>
-                                    </div>
-
-                                    :
-
-                                    <div className="bl__items-user">
-                                        <p className="title__contacts">Контакты</p>
-                                        <div className="order__content">
-                                            <div className="container__fasource">
-                                                <div className="svg__content">
-                                                    <FaPhoneAlt />
-                                                </div>
-                                                <div className="">
-                                                    <p className="title__menu">Телефон</p>
-                                                    <p className="title__text">880090005555</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div className="order__content">
-                                            <div className="container__fasource">
-                                                <div className="svg__content">
-                                                    <FaEnvelope />
-                                                </div>
-                                                <div className="">
-                                                    <p className="title__menu">Почта</p>
-                                                    <p className="title__text">reptilt@mail.ru</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div className="order__content">
-                                            <div className="container__fasource">
-                                                <div className="svg__content">
-                                                    <FaMapMarkerAlt />
-                                                </div>
-                                                <div className="">
-                                                    <p className="title__menu">Адрес</p>
-                                                    <p className="title__text">Москва, ул. Кутузова д. 17б, кв 14</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-
+                                <div className={editable ? "lgk__setting--edit-block" : "bl__items-user"}>
+                                    <TextInput
+                                        paramName={"Телефон"}
+                                        placeHolder={"+7 (900) 393-22-33"}
+                                        img={<FaPhoneAlt/>}
+                                        handleParam={changeUserProperty}
+                                        propertyKey={"phoneNumber"}
+                                        editable={editable}/>
+                                    {inputs}
+                                </div>
                             </div>
                         </div>
-
                     </div>
-                    {/* <NavigationBottom /> */}
-                    {/* <div className="bl_heitgh--crOrder"></div> */}
                 </div>
                 <div className="btn__setting">
                     <div className="btn__setting__container">
                         <Button
                             onClick={onClickSettingVisible}
-                        >Редактировать</Button>
+                        >{editable ? "Отменить" : "Редактировать"}</Button>
                     </div>
-                    <div className="btn__setting__container"><Button>Сохранить</Button></div>
+                    <div className="btn__setting__container"><Button onClick={() => {
+                        updateUser(user)
+                    }}>Сохранить</Button></div>
                 </div>
                 <div className="text__setting">
                     <p>Укажите основную информацию <span>о себе</span></p>
