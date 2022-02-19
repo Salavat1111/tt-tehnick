@@ -7,6 +7,8 @@ import {SortPopup, QuestionBlock} from "./components";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {serverUrl} from "../common/AppConstants";
+import TextInput from "./TextInput";
+import AddressInput from "./AddressInput";
 
 async function getTechnicalTypes() {
     const url = serverUrl + `/fixer/api/attrs/1`;
@@ -48,7 +50,6 @@ async function getOrderModel() {
 function CreateOrder() {
 
     const [technicalTypes, setTechnicalTypes] = useState([])
-    const [order, setOrder] = useState({})
     const [address, setAddress] = useState("")
     const [technicType, setTechnicType] = useState([])
     const [date, setDate] = useState("")
@@ -70,7 +71,7 @@ function CreateOrder() {
             </div>
 
             <div className="input__regstr">
-                <InputText handleValue={setAddress} placeholder="Адрес"/>
+                <AddressInput handleValue={setAddress} placeholder="Адрес" editable ={true}/>
                 <SortPopup handleValue={setTechnicType} items={technicalTypes}/>
                 <div className="block__time-date">
                     <InputTimeDate handleValue={setTime} placeholder="время"/>

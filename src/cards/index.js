@@ -18,7 +18,7 @@ export { default as Settings } from './Settings';
 export { default as СardOrder } from './СardOrder';
 export { default as ComeRegComponent } from './ComeRegComponent';
 export { default as FormatNamber } from './FormatNamber';
-export { default as PasswordForma } from './PasswordForma';
+export { default as PasswordForma } from './PasswordForm';
 export { default as App } from '../App';
 
 

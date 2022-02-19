@@ -7,14 +7,15 @@ import {MainContext} from '../App';
 import {Button} from '../cards'
 
 function Registration({disabled}) {
-    const {onNextStep} = React.useContext(MainContext);
+    const {onNextStep, user, setUser} = React.useContext(MainContext);
     const [inputValue, setInputValue] = React.useState('');
     const nextDisabled = !inputValue;
 
-    const handleChangeInput = (event) => {
-        setInputValue(event.target.value);
+    function handleChangeInput(propertyName, propertyValue) {
+        setInputValue(propertyName, propertyValue);
+        user[propertyName] = propertyValue
+        setUser(user)
     }
-
 
     const onClickNextStep = () => {
         onNextStep();
@@ -36,13 +37,16 @@ function Registration({disabled}) {
                         <input
                             placeholder="Имя"
                             className="field"
-
+                            onChange={(e) =>{
+                                handleChangeInput("firstName", e.target.value)
+                            }}
                         />
                         <input
-                            placeholder="Фамилия"
+                            placeholder="Номер телефона"
                             className="field"
-                            onChange={handleChangeInput}
-                            value={inputValue}
+                            onChange={(e) =>{
+                                handleChangeInput("phoneNumber", e.target.value)
+                            }}
                         />
                         <div>
                         </div>
@@ -53,10 +57,6 @@ function Registration({disabled}) {
                             onClick={onClickNextStep}
                         >Далее</Button>
                         </div>
-                        {/* <button
-                            disabled={nextDisabled}
-                            onClick={onClickNextStep}
-                        >Кнопка</button> */}
                     </div>
                     <div className="cont__bl--card--reg">
                         <p>Уже есть аккаунт? <span>Войти</span></p>

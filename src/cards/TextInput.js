@@ -1,10 +1,11 @@
 import React from "react";
 
-function TextInput({paramName, placeHolder, img, editable, handleParam, propertyKey}) {
+function TextInput({paramName, placeHolder, img, editable, handleParam, propertyKey, onInput}) {
     return editable ?
         (<div className="block__setting-input">
             <p>{paramName}</p>
-            <input onChange={(e) => {
+            <input onInput={(e)=> onInput(e)}
+                onChange={(e) => {
                 console.log(e.target.value)
                 if (handleParam) {
                     handleParam(propertyKey, e.target.value)

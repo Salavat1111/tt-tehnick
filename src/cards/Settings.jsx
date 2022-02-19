@@ -103,19 +103,23 @@ function Settings() {
                                         <p>Имя</p>
                                         <input onChange={(e) =>
                                             changeUserProperty("firstName", e.target.value )}
-                                               placeholder={user["firstName"]}/>
+                                               // placeholder={user["firstName"]}
+                                               value={user["firstName"]}
+                                        />
                                     </div>
                                     <div className="block__setting-input">
                                         <p>Фамилия</p>
                                         <input onChange={(e) =>
                                             changeUserProperty("secondName", e.target.value )}
-                                               placeholder={user["secondName"]}/>
+                                               // placeholder={user["secondName"]}
+                                               value={user["secondName"]}
+                                        />
                                     </div>
                                 </div>
                                 <div className={editable ? "lgk__setting--edit-block" : "bl__items-user"}>
                                     <TextInput
                                         paramName={"Телефон"}
-                                        placeHolder={"+7 (900) 393-22-33"}
+                                        placeHolder={user["phoneNumber"]}
                                         img={<FaPhoneAlt/>}
                                         handleParam={changeUserProperty}
                                         propertyKey={"phoneNumber"}

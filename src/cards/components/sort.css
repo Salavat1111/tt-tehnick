@@ -17,6 +17,22 @@
     display: flex;
     justify-content: center;
 }
+
+.sortpopup__block2{
+    display: flex;
+    justify-content: center;
+}
+.sort__span2{
+    border-radius: 15px;
+    width: 410px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    color: rgb(117 117 117);
+    padding: 12px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+}
+
 li .active{ 
     background: yellowgreen;
     width: 173px;
