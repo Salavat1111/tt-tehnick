@@ -437,36 +437,7 @@ textarea{
 /*===========стили div в cards Repair.jsx=============*/
 
 /*===========стили div в cards Settings.jsx=============*/ /*объеденил стили двух компонентов в одном*/
-/*===========стили div в cards СardOrder.jsx=============*/
-.order__content-telefon{
-  display: flex;
-  /* justify-content: space-between;  */
-  width: 100%;
-  height: 100px;
-  background: #ffffff;
-  margin-top: 18px;
-  margin-bottom: 0px;
-  padding: 0px 0px 0px 56px;
-}
-.order__content{
-  display: flex;
-  justify-content: space-between; 
-  width: 100%;
-  height: auto;
-  background: #ffffff;
-  margin-top: 1px;
-  padding: 19px 7px 19px 9px;
-}
-.status__order{
-  width: 103px;
-  font-size: 10px;
-  margin: auto;
-  color: #979797;
-  text-align: center;
-}
-.bl_heitgh--crOrder{
-  height: 100px;
-}
+
 /*===========стили div в cards Settings.jsx=============*/ /*объеденил стили двух компонентов в одном*/
 .title__contacts{
   margin: 0px 0px 7px 10px;

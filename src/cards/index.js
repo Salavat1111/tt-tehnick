@@ -14,7 +14,7 @@ export { default as NavigationBottom } from './NavigationBottom';
 export { default as Registration } from './Registration';
 export { default as Repair } from './Repair';
 export { default as Settings } from './Settings';
-export { default as СardOrder } from './СardOrder';
+
 export { default as ComeRegComponent } from './ComeRegComponent';
 export { default as FormatNamber } from './FormatNamber';
 export { default as PasswordForma } from './PasswordForma';

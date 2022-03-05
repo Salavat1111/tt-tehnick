@@ -4,8 +4,8 @@ import { FaPlusCircle } from "react-icons/fa"; // создать
 import { FaBorderAll } from "react-icons/fa"; // заказы
 import { FaLayerGroup } from "react-icons/fa"; // история
 import { FaRegSun } from "react-icons/fa"; // настройки
-
-import { PasswordForma, FormatNamber, Registration, HistoryMap, Repair, Settings, СardOrder, Logo, NavigationBottom, BtnBurger, HomeRepair, } from './cards'
+import { СardOrder } from "./cards/card-order-zk";
+import { PasswordForma, FormatNamber, Registration, HistoryMap, Repair, Settings, Logo, NavigationBottom, BtnBurger, HomeRepair, } from './cards'
 import { ProfileContact, ProfileEmail, ProfileAdress, ProfileName } from './cards/component-settings';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
