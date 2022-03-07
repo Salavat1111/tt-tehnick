@@ -31,18 +31,20 @@ function SortPopup({ items }) {
             <div ref={sortRef} className="sortpopup__block">
                 <span className='sort__span' onClick={teggleVisiblePopup} >{activeLabel}</ span>
             </div>
-            {visiblePopup && <div className='sortpopup__wrapper'>
-                <ul>
-                    <li>
-                        {items.map((name, index) => (
-                            <li
-                                className={activeItem === index ? 'active' : ''}
-                                onClick={() => onSelectItem(index)}
-                                key={`${name}_${index}`}
-                            >{name}</li>
-                        ))}
-                    </li>
-                </ul>
+            {visiblePopup && <div className='sortpopup__wrapper-container'>
+                <div className='sortpopup__wrapper'>
+                    <ul className='ul--block'>
+                        <li>
+                            {items.map((name, index) => (
+                                <li
+                                    className={activeItem === index ? 'active' : ''}
+                                    onClick={() => onSelectItem(index)}
+                                    key={`${name}_${index}`}
+                                >{name}</li>
+                            ))}
+                        </li>
+                    </ul>
+                </div>
             </div>}
 
         </>

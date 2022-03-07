@@ -12,7 +12,7 @@ import '../App.css';
 // import NavigationBottom from './NavigationBottom';
 // import ButtonBack from './ButtonBack';
 
-import { Logo, BtnBurger, NavigationBottom, ButtonBack } from '../cards'
+import { BtnBurger, NavigationBottom, ButtonBack } from '../cards'
 
 
 
@@ -22,7 +22,7 @@ function СardOrder() {
             <div className="wrapper__content">
                 <div className="header__container">
                     <div className="header__logo">
-                        <Logo />
+                        {/* <Logo /> */}
                     </div>
                     <ButtonBack />
                 </div>
