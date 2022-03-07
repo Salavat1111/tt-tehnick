@@ -36,7 +36,10 @@ function СardOrder() {
                         <p>Холодильник</p>
                     </div>
                     <div className='svg__order--bl'>
-                        <FaAngleDown onClick={visbeledItemsBlock} />
+                        <FaAngleDown
+                            onClick={visbeledItemsBlock}
+                            className={blOrderVisebled ? 'svg__icons active' : 'svg__icons'}
+                        />
                     </div>
                 </div>
             </div>

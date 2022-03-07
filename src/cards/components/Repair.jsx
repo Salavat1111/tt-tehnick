@@ -1,5 +1,5 @@
 import React from "react";
-import '../../App.css';
+import './sort.css';
 import logos from '../../img/2.png';
 import { FaInfoCircle } from "react-icons/fa"; //вопрос
 // import Button from '../Button.jsx'

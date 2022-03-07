@@ -120,3 +120,73 @@ li{
     text-align: center;
 }
 /*----------------------QuestionBlock-----------------------*/
+
+
+
+
+
+/*===========стили div в cards Repair.jsx=============*/
+/*------------Блок repair max-width: 1280-------------*/
+.wrapper__content-repair{
+    width: 600px;
+    height: auto;
+    background: #5A5A5A;
+    margin: auto;
+    border-radius: 20px;
+    padding-bottom: 10px;
+  }
+  .content-registr-repair{  
+    width: 600px;
+    height: auto;
+    background: #fff;
+    border-radius: 20px;
+  }
+  /*------------Блок repair max-width: 1280-------------*/
+  .repair__page-img  {
+    width: 183px;
+    height: 186px;
+  }
+  
+  
+  .input__time-date input{
+    margin: 8px 2px 10px 2px;
+    border-radius: 15px;
+    width: 200px;
+    height: 50px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    color: rgb(117 117 117);
+    padding: 0px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+  }
+  .input__time-date {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+  }
+  .block__time-date{
+    display: flex;
+    justify-content: center;
+  }   
+  textarea{
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    width: 410px;
+    height: 100px;
+    border: 0px solid #ffffff;
+    background: #EBEBEB;
+    color: rgb(117 117 117);
+    padding: 14px 0px 3px 52px;
+    box-shadow: 0px 4px 10px -8px rgb(0 0 0 / 80%);
+  
+  }
+
+  
+  
+  
+
+
+
+/*===========стили div в cards Repair.jsx=============*/

@@ -30,6 +30,14 @@ font-size: 25px;
     font-size: 48px;
     cursor: pointer;
 }
+.svg__icons.active{
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.svg__icons{
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
 .order--bl.active{
     width: 80%;
     height: 300px;
