@@ -1,0 +1,52 @@
+/*===========стили div в cards СardOrder.jsx=============*/
+.content__order-visible{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: 100px;
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 15px;
+}
+.order__block--visible{
+    width: 80%;
+    height: 80px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.bl__text--order p{
+font-size: 25px;
+}
+
+.svg__order--bl svg{
+    position: relative;
+    top: 5px;
+    font-size: 48px;
+    cursor: pointer;
+}
+.svg__icons.active{
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.svg__icons{
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
+.order--bl.active{
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    border-radius: 16px;
+    background-color: #5a5a5a;
+}
+
+.order--bl.active .order__block--visible{
+    width: 100%;
+    margin: 20px 0px;
+} 
