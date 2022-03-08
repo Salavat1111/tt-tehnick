@@ -1,13 +1,13 @@
 import React from "react";
 
-function AddressInput(props) {
+function AddressInput({paramName, placeHolder, img, editable, handleParam, propertyKey, onInput, visible}) {
     const [items, setItems] = React.useState([]);
     const [activeItem, setActiveItem] = React.useState(0);
-    const [visible, setVisible] = React.useState(false);
-    const [activeLabel, setActiveLabel] = React.useState(items[activeItem]);
+    const [showPopup, setShowPopup] = React.useState(false);
+    const [activeLabel, setActiveLabel] = React.useState(placeHolder);
     const onSelectItem = (index) => {
         setActiveItem(index)
-        setVisible(false)
+        setShowPopup(false)
         setActiveLabel(items[activeItem])
     }
 
@@ -33,7 +33,7 @@ function AddressInput(props) {
             .then(result => {
                 let suggestionItems = JSON.parse(result).suggestions.map(item => item.value);
                 setItems(suggestionItems)
-                setVisible(true)
+                setShowPopup(true)
                 setActiveLabel(query)
             })
             .catch(error => {
@@ -42,27 +42,43 @@ function AddressInput(props) {
             });
     }
 
-    return <>
-        <div className="sortpopup__block2">
-            <input onInput={(e) => getAddresses(e)} className='sort__span2'
-                   value={activeLabel}/>
-        </div>
-        {visible && <div className='sortpopup__wrapper'>
-            <ul>
-                <li>
-                    {items.map((name, index) => (
-                        <li
-                            className={activeItem === index ? 'active' : ''}
-                            onClick={() => onSelectItem(index)}
-                            key={`${name}_${index}`}
-                        >{name}</li>
-                    ))}
-                </li>
-            </ul>
-        </div>}
+    return visible ?
+        editable ?
+            <>
+                <div className="block__setting-input">
+                    <p>{paramName}</p>
+                    {/*<div className="sortpopup__block2">*/}
+                        <input onInput={(e) => getAddresses(e)} className='sort__span2'
+                               value={activeLabel}/>
+                    {/*</div>*/}
+                    {showPopup && <div className='sortpopup__wrapper'>
+                        <ul>
+                            <li>
+                                {items.map((name, index) => (
+                                    <li
+                                        className={activeItem === index ? 'active' : ''}
+                                        onClick={() => onSelectItem(index)}
+                                        key={`${name}_${index}`}
+                                    >{name}</li>
+                                ))}
+                            </li>
+                        </ul>
+                    </div>}
+                </div>
+            </> :
+            (<div className="order__content">
+                <div className="container__fasource">
+                    <div className="svg__content">
+                        {img}
+                    </div>
+                    <div className="">
+                        <p className="title__menu">{paramName}</p>
+                        <p className="title__text">{placeHolder}</p>
+                    </div>
+                </div>
 
-    </>
-        ;
+            </div>)
+        : <></>;
 }
 
 export default AddressInput;

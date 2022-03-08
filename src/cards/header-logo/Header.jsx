@@ -1,26 +1,20 @@
 import React from "react";
 import './logo.css';
-import { Logo, Menu, } from '../header-logo';
-import { FaPlusCircle } from "react-icons/fa"; // создать
-import { FaBorderAll } from "react-icons/fa"; // заказы
-import { FaRegSun } from "react-icons/fa"; // настройки
+import {Logo, Menu,} from '../header-logo';
+import {loginUrl, userSettingsUrl} from "../../common/AppConstants";
 
-function Header({ items }) {
-    // const items = [
-    //     { value: 'создать', href: '/rooms/1', icon: <FaPlusCircle />, },
-    //     { value: 'заказы', href: '/rooms/2', icon: <FaBorderAll />, },
-    //     { value: 'настройки', href: '/rooms/4', icon: <FaRegSun />, },
-    // ];
-
-
-
+function Header({items, isLogin, user}) {
     return (
         <div className="wrapper__container-header">
-            <Logo />
-            <Menu items={items} />
+            <Logo/>
+            <Menu items={items}/>
             <div className="border__line-block"></div>
             <div className="block__lastName">
-                <p>Фаттахов Салават</p>
+                {
+                    isLogin ?
+                        <p><a href={userSettingsUrl}>{user.firstName} {user.secondName}</a></p> :
+                        <p><a href={loginUrl}>Войти</a></p>
+                }
             </div>
         </div>
     );

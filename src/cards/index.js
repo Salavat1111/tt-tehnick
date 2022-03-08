@@ -1,9 +1,8 @@
 export { default as HomeRepair } from './step/HomeRepair';
-export { default as BtnMenu } from './component-btn-menu/BtnMenu';
+// export { default as BtnMenu } from './component-btn-menu/BtnMenu';
 export { default as BtnBurger } from './component-btn-menu/BtnBurger';
 export { default as Button } from './Button';
 export { default as ButtonBack } from './ButtonBack';
-export { default as CardDescription } from './CardDescription';
 export { default as HistoryMap } from './HistoryMap';
 export { default as InputPassword } from './InputPassword';
 export { default as InputText } from './InputText';
@@ -15,9 +14,7 @@ export { default as Registration } from './Registration';
 export { default as Repair } from './components/Repair';
 export { default as Settings } from '../cards/component-settings/Settings';
 
-export { default as ComeRegComponent } from './ComeRegComponent';
-export { default as FormatNamber } from './FormatNamber';
-export { default as PasswordForma } from './PasswordForma';
+export { default as PasswordForma } from './PasswordForm';
 export { default as App } from '../App';
 
 

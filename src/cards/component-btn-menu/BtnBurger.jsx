@@ -1,7 +1,7 @@
 import React from "react";
 // import '../App.css';
 import './btn-burger.css'
-import { BtnMenu } from '../../cards'
+// import { BtnMenu } from '../../cards'
 import Cookies from "js-cookie";
 
 function BtnItem(props) {
@@ -33,7 +33,7 @@ function BtnBurger(props) {
             <div className={onClickBtn ? 'center active' : 'center'} onClick={() => setOnClickBtn(!onClickBtn)}>
                 <span />
             </div>
-            <BtnMenu items={items} active={onClickBtn} setActive={setOnClickBtn} />
+            {/*<BtnMenu items={items} active={onClickBtn} setActive={setOnClickBtn} />*/}
         </>
     );
 }

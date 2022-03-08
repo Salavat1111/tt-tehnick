@@ -1,15 +1,13 @@
 import './App.css';
 
-import { FaPlusCircle } from "react-icons/fa"; // создать
-import { FaBorderAll } from "react-icons/fa"; // заказы
-import { FaLayerGroup } from "react-icons/fa"; // история
-import { FaRegSun } from "react-icons/fa"; // настройки
-import { СardOrder } from "./cards/comp-applications";
-import { PasswordForma, FormatNamber, Registration, HistoryMap, Repair, Settings, NavigationBottom, BtnBurger, HomeRepair, } from './cards'
-import { ProfileContact, ProfileEmail, ProfileAdress, ProfileName } from './cards/component-settings';
-import { Routes, Route } from 'react-router-dom';
+import {FaBorderAll, FaPlusCircle, FaRegSun} from "react-icons/fa"; // заказы // создать // настройки
+import {СardOrder} from "./cards/comp-applications";
+import {BtnBurger, HistoryMap, HomeRepair, PasswordForma, Registration, Repair, Settings,} from './cards'
+import {Route, Routes} from 'react-router-dom';
 import React from 'react';
-import { Header } from './cards/header-logo'
+import {Header} from './cards/header-logo'
+import Login from "./cards/Login";
+import {getCurrentUserInfo} from "./servises/UserService";
 
 const stepsComponents = {
   0: HomeRepair,
@@ -23,15 +21,10 @@ export const MainContext = React.createContext({});
 function App() {
 
   const items = [
-    { value: 'создать', href: '/rooms/1', icon: <FaPlusCircle />, },
-    { value: 'заказы', href: '/rooms/2', icon: <FaBorderAll />, },
-    { value: 'настройки', href: '/rooms/4', icon: <FaRegSun />, },
+    {value: 'создать', href: '/rooms/1', icon: <FaPlusCircle/>,},
+    {value: 'заказы', href: '/rooms/2', icon: <FaBorderAll/>,},
+    {value: 'настройки', href: '/rooms/4', icon: <FaRegSun/>,},
   ];
-
-  // const link = ['Мясные', 'Лесные', 'Саленные', 'Маленые', 'Крутые', 'Малые', 'Слепые', 'Топлые',]
-  const [visibleRepir, setVisibleRepair] = React.useState(false);
-  const repair = visibleRepir
-
 
   const onNextStep = () => {
     setStep((prev) => prev + 1)
@@ -40,46 +33,57 @@ function App() {
   const [step, setStep] = React.useState(0)
   const [user, setUser] = React.useState({})
   const Step = stepsComponents[step];
+  const [isLogin, setIsLogin] = React.useState(false)
+
+  React.useEffect(() => {
+    getCurrentUserInfo().then(response => {
+      console.log('loadFromServer: ' + response);
+      if (response != "") {
+        setUser(response);
+        setIsLogin(true)
+      } else {
+        setUser({});
+        setIsLogin(false)
+      }
+    }).catch(() => {
+          console.log("error to getUser");
+          setIsLogin(false);
+        }
+    );
+  }, [setUser, setIsLogin]);
 
   return (
-    <>
-      <div className="wrapper">
-        <div className="wrapper__content">
-          <div className="header__container">
-            <div className="header__logo">
-              {/* <Logo /> */}
-              <Header items={items} />
+      <>
+        <div className="wrapper">
+          <div className="wrapper__content">
+            <div className="header__container">
+              <div className="header__logo">
+                <Header items={items} isLogin={isLogin} user={user}/>
+              </div>
+            </div>
+            <BtnBurger/>
+            <div className="content__repair">
+
+              <Routes>
+                <Route path="/rooms/1" element={<Repair/>}/>
+                <Route path="/rooms/2" element={<СardOrder/>}/>
+                <Route path="/rooms/3" element={<HistoryMap/>}/>
+                <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user}/>}/>
+                <Route path="/l" element={< Login/>}/>
+                <Route
+                    path="/"
+                    element={<MainContext.Provider value={{step, onNextStep, user, setUser}}>
+                      <Step/>
+                    </MainContext.Provider>}
+                />
+              </Routes>
+
             </div>
           </div>
-          <BtnBurger />
-          <div className="content__repair">
-
-            <Routes>
-              <Route path="/rooms/1" element={<Repair />} />
-              <Route path="/rooms/2" element={<СardOrder />} />
-              <Route path="/rooms/3" element={<HistoryMap />} />
-              <Route path="/rooms/4" element={<Settings />} />
-              <Route path="/l" element={< Login />} />
-              <Route
-                  path="/"
-                  element={<MainContext.Provider value={{ step, onNextStep, user, setUser}}>
-                            <Step />
-                           </MainContext.Provider>}
-              />
-            </Routes>
 
 
-            {/* <NavigationBottom items={items} /> */}
-
-
-          </div>
         </div>
-
-
-
-
-      </div>
-    </>
+      </>
   );
 }
 
