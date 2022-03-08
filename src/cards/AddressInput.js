@@ -1,6 +1,3 @@
-import {FaMapMarkerAlt} from "react-icons/fa";
-import TextInput from "./TextInput";
-import {SortPopup} from "./components";
 import React from "react";
 
 function AddressInput(props) {
@@ -34,7 +31,7 @@ function AddressInput(props) {
         fetch(url, options)
             .then(response => response.text())
             .then(result => {
-                let suggestionItems = JSON.parse(result).suggestions.map(item=> item.value);
+                let suggestionItems = JSON.parse(result).suggestions.map(item => item.value);
                 setItems(suggestionItems)
                 setVisible(true)
                 setActiveLabel(query)
@@ -45,10 +42,10 @@ function AddressInput(props) {
             });
     }
 
-    return        <>
+    return <>
         <div className="sortpopup__block2">
-            <input onInput={(e)=>getAddresses(e)} className='sort__span2'
-            value={activeLabel}/>
+            <input onInput={(e) => getAddresses(e)} className='sort__span2'
+                   value={activeLabel}/>
         </div>
         {visible && <div className='sortpopup__wrapper'>
             <ul>
@@ -67,4 +64,5 @@ function AddressInput(props) {
     </>
         ;
 }
+
 export default AddressInput;
