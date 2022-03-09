@@ -6,21 +6,28 @@ import {getUserModel, updateUser} from "../../servises/UserService";
 import EmailInput from "../EmailInput";
 import AddressInput from "../AddressInput";
 import TextInput from "../TextInput";
+import {userSettingsUrl} from "../../common/AppConstants";
 
 function Settings({isLogin, user, }) {
     const [userSettings, setUserSettings] = React.useState({})
-    const [paramsToSave, setParamsToSave] = React.useState([])
     const [editable, setEditable] = React.useState(false)
-    const [modelParams, setModelParams] = React.useState([])
     const [saveInfo, setSaveInfo] = React.useState("")
 
     function setUserParameters(newParams) {
-        let newUser = {...userSettings}
-        newUser.parameters = newParams;
-        setUserSettings(newUser)
+        function getData () { console.log("setUserParameters newParams:" + JSON.stringify(newParams)); return newParams;}
+        console.log("sup1: " + JSON.stringify({...userSettings,
+            parameters:getData ()
+        }))
+
+        setUserSettings((prev) => (
+            {...prev,
+                parameters:getData ()
+            }))
+        console.log("sup2: " + JSON.stringify(userSettings))
+        console.log(userSettings)
     }
 
-    const onClickSettingVisible = () => {
+    const onClickSettingVisible = (saved) => {
         let oldEditable = editable
         setEditable(!oldEditable)
         let newParams = [...userSettings.parameters];
@@ -32,8 +39,8 @@ function Settings({isLogin, user, }) {
                     let userParam = getUserParam(user.parameters, "" + p.attrId);
                     if (userParam == undefined) {
                         p.visible = false;
-                    } else if (userParam != undefined) {
-                        p.value = userParam.value
+                    } else if (userParam != undefined && !saved) {
+                        p.value = userParam.oldValue
                     }
                 }
                 return p;
@@ -60,8 +67,8 @@ function Settings({isLogin, user, }) {
     React.useEffect(() => {
         getUserModel().then((response) => {
                 console.log("getUserMode: response:" + JSON.stringify(response))
-                setModelParams(response)
-                console.log("getUserMode: modelParams:" + JSON.stringify(modelParams))
+                // setModelParams(response)
+                // console.log("getUserMode: modelParams:" + JSON.stringify(modelParams))
 
                 let parameters = user != undefined ?
                     user.parameters != undefined ? [...user.parameters] : userSettings.parameters
@@ -73,7 +80,11 @@ function Settings({isLogin, user, }) {
                     })
                     console.log("p1: " + JSON.stringify(parameters))
                 } else {
-                    parameters.map(p=>p.visible=true)
+                    parameters = parameters.map(p=>{
+                        p.visible = true
+                        p.oldValue = p.value
+                        return p
+                    })
                     let allParams = [...parameters]
                     console.log("p2: " + JSON.stringify(allParams))
                     console.log("p22: " + JSON.stringify(parameters))
@@ -96,35 +107,23 @@ function Settings({isLogin, user, }) {
             console.log(e)
         });
 
-
-    }, [setModelParams, setUserSettings])
+    }, [setUserSettings,
+        user
+    // userSettings
+    ])
 
     function changeUserParameter(property, value) {
         let newParams = [...userSettings.parameters]
-        let _paramsToSave = [...paramsToSave]
         for (let p in userSettings.parameters) {
             if (newParams[p].name == property) {
                 let newParam = newParams[p];
-                newParam["value"] = value;
+                newParam.value = value;
+                newParam.toSave = newParam.oldValue != value;//todo if oldvalue != newValue
                 newParams[p] = newParam
-                if (value != "" && value != undefined) {
-                    let userParam = getUserParam(_paramsToSave, newParam.attrId);
-                    if (userParam == undefined) {
-                        _paramsToSave.push(newParam)
-                    } else {
-                        _paramsToSave = _paramsToSave.map(p=> {
-                            if (p.attrId == newParam.attrId) {
-                                p.value = value
-                            }
-                            return p
-                        })
-                    }
-                }
                 break
             }
         }
         setUserParameters(newParams)
-        setParamsToSave(_paramsToSave)
         console.log("changeUserParameter:" + JSON.stringify(newParams))
         console.log("changeUserParameter2:" + JSON.stringify(userSettings))
         console.log("changeUserParameter2:" + JSON.stringify(user))
@@ -201,20 +200,25 @@ function Settings({isLogin, user, }) {
                         <div className="btn__setting">
                             <div className="btn__setting__container">
                                 <Button
-                                    onClick={onClickSettingVisible}
+                                    onClick={() =>{onClickSettingVisible(false)}}
                                 >{editable ? "Отменить" : "Редактировать"}</Button>
                             </div>
                             {saveInfo}
-                            <div className="btn__setting__container"><Button onClick={() => {
-                                userSettings.parameters = paramsToSave
-                                console.log("userSettings when save")
-                                console.log(JSON.stringify(userSettings))
-                                updateUser(userSettings)
+                            <div className="btn__setting__container"><Button onClick={(e) => {
+                                let toSaveData = {...userSettings}
+                                toSaveData.parameters = userSettings.parameters.filter(p=>{
+                                    return p.toSave;
+                                });
+                                updateUser(toSaveData)
                                     .then((resp) => {
-                                        setUserSettings(resp);
+                                        console.log("response after update: "+JSON.stringify(resp));
+                                        // userSettings.parameters = resp.parameters
+                                        setUserParameters(resp.parameters)
+                                        setUserSettings(resp, ()=>{console.log("update settings: " + JSON.stringify(userSettings)+ JSON.stringify(resp))});
+                                        console.log("userSettings after update: " +JSON.stringify(userSettings));
                                         setSaveInfo("Сохранено!")
                                         setEditable(false);
-                                        onClickSettingVisible()
+                                        onClickSettingVisible(true)
                                         setTimeout(() => {
                                             setSaveInfo("")
                                         }, 3000);
@@ -222,10 +226,6 @@ function Settings({isLogin, user, }) {
 
                             }}>Сохранить</Button></div>
                         </div>
-                        {/*<div className="text__setting">*/}
-                        {/*    <p>Укажите основную информацию <span>о себе</span></p>*/}
-                        {/*</div>*/}
-
                     </div>) :
                     (<div>
                         <h1 className="zgl__login--card--reg">Войти</h1>
