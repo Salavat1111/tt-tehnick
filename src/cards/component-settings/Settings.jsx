@@ -5,13 +5,13 @@ import {FaMapMarkerAlt, FaPhoneAlt} from "react-icons/fa"; //телефон
 import EmailInput from "../EmailInput";
 import AddressInput from "../AddressInput";
 import TextInput from "../TextInput";
+import EditableInput from "../inputs/EditableInput";
 
 function Settings({isLogin, user, userService}) {
     const [userSettings, setUserSettings] = React.useState({})
     const [editable, setEditable] = React.useState(false)
     const [savedInfo, setSavedInfo] = React.useState("")
     const [modelParams, setModelParams] = React.useState([])
-
     function setUserParameters(newParams) {
         setUserSettings((prev) => ({...prev, parameters: newParams}))
     }
@@ -23,6 +23,9 @@ function Settings({isLogin, user, userService}) {
         let newParams = [...userSettings.parameters];
         newParams = newParams.map(
             (p) => {
+                if (saved) {
+                    p.oldValue = p.value
+                }
                 if (!oldEditable && !p.visible) {
                     p.visible = !oldEditable;
                 } else if (oldEditable && userSettings?.parameters != undefined) {
@@ -30,7 +33,7 @@ function Settings({isLogin, user, userService}) {
                     if (userParam == undefined) {
                         p.visible = false;
                     } else if (userParam != undefined && !saved) {
-                        p.value = userParam.oldValue
+                        p.value = p.oldValue
                     }
                 }
                 return p;
@@ -49,7 +52,8 @@ function Settings({isLogin, user, userService}) {
         }
         return undefined
     }
-    React.useEffect(()=>{
+
+    React.useEffect(() => {
         userService.getUserModel().then((response) => {
                 setModelParams(response)
                 console.log("setModelParams: " + JSON.stringify(response))
@@ -58,21 +62,27 @@ function Settings({isLogin, user, userService}) {
             console.log("error to getUserMode")
             console.log(e)
         });
-    },[])
+    }, [])
 
-    React.useEffect(() => {
+    function mergeUserParamsWithModelParams(user, modelParams) {
         if (user?.parameters) {
             let newParams = [...user.parameters,]
-            newParams.map(p=>{p.visible=true; p.oldValue = p.value;})
+            newParams.map(p => {
+                p.visible = true;
+                p.oldValue = p.value;
+            })
             for (let p of modelParams) {
                 if (getUserParam(newParams, p.attrId) == undefined) {
                     p.visible = false
                     newParams.push(p);
                 }
-
             }
-            setUserSettings((prev) => ({...user, parameters:newParams}))
+            setUserSettings({...user, parameters: newParams})
         }
+    }
+
+    React.useEffect(() => {
+        mergeUserParamsWithModelParams(user, modelParams);
         console.log("user: " + JSON.stringify(user))
     }, [
         user,
@@ -100,7 +110,7 @@ function Settings({isLogin, user, userService}) {
                 paramName: p.name,
                 placeHolder: p.value,
                 editable: editable,
-                setValue: changeUserParameter,
+                setValue: (e) => changeUserParameter(p.name, e.target.value),
                 propertyKey: p.name,
                 visible: p.visible
             }
@@ -114,43 +124,37 @@ function Settings({isLogin, user, userService}) {
         });
     }
 
-    let inputs = getInputs(userSettings?.parameters == undefined ? []:[...userSettings.parameters])
+    let inputs = getInputs(userSettings.parameters)
 
     function SettingsContent() {
         return <div className="content">
             <div>
                 <div>
-                    <h1 className="zgl__login--card--reg">Настройки</h1>
+                    <h1 className="zgl__login--card--reg">Настройки </h1>
                 </div>
                 <div className="order__block">
                     <div className="order__content-telefon">
-                        <div className="block__setting-input">
-                            <p>Имя</p>
-                            <input
-                                onChange={(e) => {
-                                    setUserSettings((prev) => ({...prev, firstName: e.target.value}));
-                                }
-                                }
-                                value={userSettings?.firstName}
-                            />
-                        </div>
-                        <div className="block__setting-input">
-                            <p>Фамилия</p>
-                            <input
-                                onChange={(e) => {
-                                    setUserSettings((prev) => ({...prev, secondName: e.target.value}));
-                                }}
-                                value={userSettings?.secondName}
-                            />
-                        </div>
+                        <EditableInput
+                            label={"Имя"}
+                            value={userSettings?.firstName}
+                            onChange={(e) => {
+                            setUserSettings((prev) => ({...prev, firstName: e.target.value}));
+                        }}
+                        />
+                        <EditableInput
+                            label={"Фамилия"}
+                            value={userSettings?.secondName}
+                            onChange={(e) => {
+                                setUserSettings((prev) => ({...prev, secondName: e.target.value}));
+                            }}
+                        />
                     </div>
                     <div className={editable ? "lgk__setting--edit-block" : "bl__items-user"}>
                         <TextInput
                             paramName={"Телефон"}
                             placeHolder={userSettings?.phoneNumber}
                             img={<FaPhoneAlt/>}
-                            // setValue={(e) => {
-                            //     setUserSettings((prev) => ({...prev, phoneNumber: e.target.value}));}}
+                            setValue={(e) => {setUserSettings((prev) => ({...prev, phoneNumber: e.target.value}));}}
                             propertyKey={"phoneNumber"}
                             editable={editable}
                             visible={true}
@@ -161,31 +165,35 @@ function Settings({isLogin, user, userService}) {
             </div>
 
             <div className="btn__setting">
+
                 <div className="btn__setting__container">
-                    <Button
-                        onClick={() => {
-                            onClickSettingVisible(false)
-                        }}
-                    >{editable ? "Отменить" : "Редактировать"}</Button>
+                    <Button onClick={() => {onClickSettingVisible(false)}}>
+                        {editable ? "Отменить" : "Редактировать"}
+                    </Button>
                 </div>
                 {savedInfo}
-                <div className="btn__setting__container"><Button onClick={(e) => {
+                <div className="btn__setting__container">
+                    <Button onClick={() => {
                     let toSaveData = {...userSettings}
                     toSaveData.parameters = userSettings.parameters.filter(p => {
                         return p.toSave;
                     });
-                    userService.updateUser(toSaveData)
-                        .then((resp) => {
-                            setUserSettings(resp);
-                            setSavedInfo("Сохранено!")
-                            setEditable(false);
-                            onClickSettingVisible(true)
-                            setTimeout(() => {
-                                setSavedInfo("")
-                            }, 3000);
-                        });
-
-                }}>Сохранить</Button></div>
+                    const updateUser = userService.updateUser(toSaveData);
+                    updateUser.then(
+                        (response) => {
+                            response.parameters.map(p=>{p.visible=true})
+                            mergeUserParamsWithModelParams(response, modelParams);
+                            console.log('updateUser setUserSettings' + JSON.stringify(response))
+                        }
+                    )
+                    setSavedInfo("Сохранено!");
+                    setEditable(false);
+                    setTimeout(() => {
+                                    setSavedInfo("")
+                                }, 3000);
+                    onClickSettingVisible(true);
+                }}>Сохранить</Button>
+                </div>
             </div>
         </div>;
     }
@@ -207,6 +215,5 @@ function Settings({isLogin, user, userService}) {
         </div>
     );
 }
-
 
 export default Settings;

@@ -1,27 +1,11 @@
 import React from "react";
+import EditableInput from "./inputs/EditableInput";
 
-function TextInput({paramName, placeHolder, img, editable, setValue, propertyKey, onInput, visible}) {
+function TextInput({paramName, placeHolder, img, editable, setValue, visible}) {
     return visible ?
         editable ?
-            (<div className="block__setting-input">
-                <p>{paramName}</p>
-                <input
-                    onInput={(e) => {
-                        console.log(e.target.value)
-                        // if (handleParam) {
-                        setValue(propertyKey, e.target.value)
-                        // }
-                    }}
-                    // onChange={(e) => {
-                    //        console.log(e.target.value)
-                           // if (handleParam) {
-                           // handleParam(propertyKey, e.target.value)
-                           // }
-                       //}}
-                    placeholder={placeHolder}
-                    value={placeHolder}
-                />
-            </div>) : (<div className="order__content">
+            <EditableInput label={paramName} onChange={setValue} value={placeHolder}/> :
+            <div className="order__content">
                 <div className="container__fasource">
                     <div className="svg__content">
                         {img}
@@ -31,8 +15,7 @@ function TextInput({paramName, placeHolder, img, editable, setValue, propertyKey
                         <p className="title__text">{placeHolder}</p>
                     </div>
                 </div>
-
-            </div>) :
+            </div> :
         <div></div>
         ;
 }
