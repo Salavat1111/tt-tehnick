@@ -1,6 +1,6 @@
 import React from "react";
 
-function TextInput({paramName, placeHolder, img, editable, handleParam, propertyKey, onInput, visible}) {
+function TextInput({paramName, placeHolder, img, editable, setValue, propertyKey, onInput, visible}) {
     return visible ?
         editable ?
             (<div className="block__setting-input">
@@ -9,15 +9,16 @@ function TextInput({paramName, placeHolder, img, editable, handleParam, property
                     onInput={(e) => {
                         console.log(e.target.value)
                         // if (handleParam) {
-                        handleParam(propertyKey, e.target.value)
+                        setValue(propertyKey, e.target.value)
                         // }
                     }}
-                    onChange={(e) => {
-                           console.log(e.target.value)
+                    // onChange={(e) => {
+                    //        console.log(e.target.value)
                            // if (handleParam) {
-                           handleParam(propertyKey, e.target.value)
+                           // handleParam(propertyKey, e.target.value)
                            // }
-                       }} placeholder={placeHolder}
+                       //}}
+                    placeholder={placeHolder}
                     value={placeHolder}
                 />
             </div>) : (<div className="order__content">

@@ -7,7 +7,6 @@ import {SortPopup, QuestionBlock} from "./components";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {serverUrl} from "../common/AppConstants";
-import TextInput from "./TextInput";
 import AddressInput from "./AddressInput";
 
 async function getTechnicalTypes() {

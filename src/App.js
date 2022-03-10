@@ -7,7 +7,7 @@ import {Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {Header} from './cards/header-logo'
 import Login from "./cards/Login";
-import {getCurrentUserInfo} from "./servises/UserService";
+import UserService from "./servises/UserService";
 
 const stepsComponents = {
   0: HomeRepair,
@@ -20,6 +20,7 @@ export const MainContext = React.createContext({});
 
 function App() {
 
+  const userService = new UserService();
   const items = [
     {value: 'создать', href: '/rooms/1', icon: <FaPlusCircle/>,},
     {value: 'заказы', href: '/rooms/2', icon: <FaBorderAll/>,},
@@ -36,8 +37,8 @@ function App() {
   const [isLogin, setIsLogin] = React.useState(false)
 
   React.useEffect(() => {
-    getCurrentUserInfo().then(response => {
-      console.log('loadFromServer: ' + response);
+    userService.getCurrentUserInfo().then(response => {
+      console.log('getUser: ' + JSON.stringify(response));
       if (response != "") {
         setUser(response);
         setIsLogin(true)
@@ -68,7 +69,7 @@ function App() {
                 <Route path="/rooms/1" element={<Repair/>}/>
                 <Route path="/rooms/2" element={<СardOrder/>}/>
                 <Route path="/rooms/3" element={<HistoryMap/>}/>
-                <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user}/>}/>
+                <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user} userService={userService}/>}/>
                 <Route path="/l" element={< Login/>}/>
                 <Route
                     path="/"
