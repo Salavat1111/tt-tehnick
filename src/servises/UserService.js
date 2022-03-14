@@ -74,4 +74,3 @@ class UserService {
 }
 
 export default UserService;
-// export default getCurrentUserInfo;

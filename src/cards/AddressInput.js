@@ -1,14 +1,15 @@
 import React from "react";
 
-function AddressInput({paramName, placeHolder, img, editable, handleParam, propertyKey, onInput, visible}) {
+function AddressInput({paramName, placeHolder, img, editable, setValue, visible}) {
     const [items, setItems] = React.useState([]);
     const [activeItem, setActiveItem] = React.useState(0);
     const [showPopup, setShowPopup] = React.useState(false);
     const [activeLabel, setActiveLabel] = React.useState(placeHolder);
-    const onSelectItem = (index) => {
+    const onSelectItem = (e, index) => {
         setActiveItem(index)
         setShowPopup(false)
         setActiveLabel(items[activeItem])
+        setValue(paramName, items[activeItem])
     }
 
     async function getAddresses(event) {
@@ -47,17 +48,15 @@ function AddressInput({paramName, placeHolder, img, editable, handleParam, prope
             <>
                 <div className="block__setting-input">
                     <p>{paramName}</p>
-                    {/*<div className="sortpopup__block2">*/}
                         <input onInput={(e) => getAddresses(e)} className='sort__span2'
                                value={activeLabel}/>
-                    {/*</div>*/}
                     {showPopup && <div className='sortpopup__wrapper'>
                         <ul>
                             <li>
                                 {items.map((name, index) => (
                                     <li
                                         className={activeItem === index ? 'active' : ''}
-                                        onClick={() => onSelectItem(index)}
+                                        onClick={(e) => onSelectItem(e, index)}
                                         key={`${name}_${index}`}
                                     >{name}</li>
                                 ))}
