@@ -1,6 +1,5 @@
 import React from "react";
 import '../App.css';
-// import './step/step.css'
 import {MainContext} from '../App';
 
 

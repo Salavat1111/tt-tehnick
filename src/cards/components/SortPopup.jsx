@@ -2,7 +2,7 @@ import React from 'react';
 import './sort.css';
 
 
-function SortPopup({handleValue, items }) {
+function SortPopup({handleValue, items}) {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState(0);
     const sortRef = React.useRef();
@@ -21,7 +21,8 @@ function SortPopup({handleValue, items }) {
     const onSelectItem = (index) => {
         setActiveItem(index)
         // console.log("activeItem:"  + activeItem)
-        handleValue(items[activeItem])
+        if (handleValue)
+            handleValue(items[activeItem])
     }
 
     React.useEffect(() => {
@@ -31,7 +32,7 @@ function SortPopup({handleValue, items }) {
     return (
         <>
             <div ref={sortRef} className="sortpopup__block">
-                <span className='sort__span' onClick={toggleVisiblePopup} >{activeLabel}</ span>
+                <span className='sort__span' onClick={toggleVisiblePopup}>{activeLabel}</ span>
             </div>
             {visiblePopup && <div className='sortpopup__wrapper-container'>
                 <div className='sortpopup__wrapper'>

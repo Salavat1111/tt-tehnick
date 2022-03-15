@@ -71,6 +71,24 @@ class UserService {
             return e
         })
     }
+
+    async createOrder(order) {
+        console.log("createOrderFunc")
+        return await axios.post(serverUrl + `/fixer/api/order/create`, order, {
+            headers: {
+                Authorization: "Bearer " + Cookies.get('access_token'),
+                'X-CSRF-TOKEN': Cookies.get('csrf_token')
+            }
+        }).then(response => {
+            console.log('response.data')
+            console.log(response.data)
+            return response.data
+        }).catch((e) => {
+            console.log("cant create order" + e)
+            return e
+        })
+    }
 }
+
 
 export default UserService;

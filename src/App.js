@@ -8,6 +8,7 @@ import React from 'react';
 import {Header} from './cards/header-logo'
 import Login from "./cards/Login";
 import UserService from "./servises/UserService";
+import CreateOrder from "./cards/CreateOrder";
 
 const stepsComponents = {
   0: HomeRepair,
@@ -66,7 +67,7 @@ function App() {
             <div className="content__repair">
 
               <Routes>
-                <Route path="/rooms/1" element={<Repair/>}/>
+                <Route path="/rooms/1" element={<Repair user={user} userService={userService}/>}/>
                 <Route path="/rooms/2" element={<СardOrder/>}/>
                 <Route path="/rooms/3" element={<HistoryMap/>}/>
                 <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user} userService={userService}/>}/>

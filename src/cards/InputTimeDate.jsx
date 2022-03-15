@@ -2,13 +2,13 @@ import React from "react";
 import '../App.css';
 
 
-function InputTimeDate(props) {
+function InputTimeDate({placeholder, onChange}) {
     return (
         <div className="input__time-date">
             <input type="text"
-                   onChange={(e)=> props.handleValue(e.target.value)}
+                   onChange={onChange}
                    name=""
-                   placeholder={props.placeholder} />
+                   placeholder={placeholder} />
         </div>
     );
 }
