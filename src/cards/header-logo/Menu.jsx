@@ -1,7 +1,7 @@
 import react from "react";
 import React from "react";
 import './logo.css';
-
+import {Link} from 'react-router-dom';
 
 
 function Menu({ items }) {
@@ -23,10 +23,10 @@ function Menu({ items }) {
                     className={activeItem === index ? 'bl__value-items active' : 'bl__value-items'}
                     onClick={() => onSelectItem(index)} key={`${name}_${index}`}
                 >
-                    <li>
-                        <span className="">{name.icon}</span>
-                        <a href={name.href}>{name.value}</a>
-                    </li>
+                    <Link to={name.href}>
+                        <span className="1">{name.icon}</span>
+                        <Link to={name.href}>{name.value}</Link>
+                    </Link>
                 </div>
             )}
         </div>
