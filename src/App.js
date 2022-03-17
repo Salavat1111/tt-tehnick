@@ -1,5 +1,5 @@
 import './App.css';
-
+import { FaChevronDown } from "react-icons/fa"; // стрелка вниз
 import { FaPlusCircle } from "react-icons/fa"; // создать
 import { FaBorderAll } from "react-icons/fa"; // заказы
 import { FaLayerGroup } from "react-icons/fa"; // история
@@ -28,6 +28,12 @@ function App() {
     { value: 'настройки', href: '/rooms/4', icon: <FaRegSun />, },
   ];
 
+  const itemsUser= [
+    { value: 'Пользователям', href: '/chapter/1', icon: <FaChevronDown />, },
+    { value: 'Техникам', href: '/chapter/2', icon: <FaChevronDown />, },
+    { value: 'Партнёрам', href: '/chapter/3', icon: <FaChevronDown />, },
+  ];
+
   // const link = ['Мясные', 'Лесные', 'Саленные', 'Маленые', 'Крутые', 'Малые', 'Слепые', 'Топлые',]
   const [visibleRepir, setVisibleRepair] = React.useState(false);
   const repair = visibleRepir
@@ -49,7 +55,7 @@ function App() {
           <div className="header__container">
             <div className="header__logo">
               {/* <Logo /> */}
-              <Header items={items} />
+              <Header items={items} itemsUser={itemsUser}/>
             </div>
           </div>
           <BtnBurger />
@@ -64,7 +70,7 @@ function App() {
               <Route path="/rooms/3-3" element={< ProfileContact />} />
               <Route path="/rooms/4-4" element={< ProfileEmail />} />
               <Route path="/rooms/5-5" element={< ProfileAdress />} /> */}
-              <Route path="/" element={<MainContext.Provider value={{ step, onNextStep }}>
+              <Route path="/chapter/1" element={<MainContext.Provider value={{ step, onNextStep }}>
                 <Step />
               </MainContext.Provider>} />
             </Routes>

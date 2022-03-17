@@ -53,43 +53,49 @@ color: #FFED50;
 
 
 /*---------Menu---------*/
-.conteinet__menu{
+.conteinet__menu-user{
 display: flex;
 /* padding-top: 26px; */
-width: 600px;
+width: 680px;
 justify-content: center;
 align-items: center;
+text-align: center;
 }
 
 
 
-.bl__value-items a{
-    display: block;
+.bl__value-items-user a{
+    /* display: block; */
     text-align: center;
     font-size: 25px;
     line-height: 23px;
     cursor: pointer;
 }
-.bl__value-items{
-    width: 170px;
+.bl__value-items-user{
+    width: 341px;
 }
 
-.bl__value-items.active{
+.bl__value-items-user.active{
     background-color: #FFED50;
     border-radius: 10px;
     padding: 13px;
 }
-.bl__value-items.active span{
+.bl__value-items-user.active span{
     color: black;
 }
-.bl__value-items.active a{
+.bl__value-items-user.active a{
     color: black;
 }
-.bl__value-items li{
+.bl__value-items-user li{
     color: #c1c1c1;
     font-size: 26px;
     line-height: 23px;
     cursor: pointer;
+}
+.bl__value-items-user span{
+    position: relative;
+    top: 3px;
+    padding-right: 5px;
 }
 
 
@@ -107,4 +113,11 @@ color: #ffffff;
 }
 /*---------block__lastName---------*/
 
-
+.svg__icons-user.active svg{
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.svg__icons-user svg{
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
