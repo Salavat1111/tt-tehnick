@@ -2,6 +2,7 @@ import React from "react";
 import './logo.css';
 import {Logo, Menu,} from '../header-logo';
 import {loginUrl, userSettingsUrl} from "../../common/AppConstants";
+import {Link} from "react-router-dom";
 
 function Header({items, isLogin, user}) {
     return (
@@ -12,8 +13,8 @@ function Header({items, isLogin, user}) {
             <div className="block__lastName">
                 {
                     isLogin ?
-                        <p><a href={userSettingsUrl}>{user.firstName} {user.secondName}</a></p> :
-                        <p><a href={loginUrl}>Войти</a></p>
+                        <Link to={userSettingsUrl}>{user.firstName} {user.secondName}</Link> :
+                        <Link to={userSettingsUrl}>Войти</Link>
                 }
             </div>
         </div>

@@ -8,7 +8,6 @@ import React from 'react';
 import {Header} from './cards/header-logo'
 import Login from "./cards/Login";
 import UserService from "./servises/UserService";
-import CreateOrder from "./cards/CreateOrder";
 
 const stepsComponents = {
   0: HomeRepair,
