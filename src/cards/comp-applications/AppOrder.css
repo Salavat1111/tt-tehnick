@@ -23,6 +23,18 @@
 .bl__text--order p{
 font-size: 25px;
 }
+.bl__text--order {
+    display: flex;
+    width: inherit;
+    justify-content: space-around;
+    align-items: center; 
+    width: 90%;
+    }
+    .block__order-section{
+        width: 15%;
+    }
+
+
 
 .svg__order--bl svg{
     position: relative;
@@ -51,7 +63,7 @@ font-size: 25px;
     margin: 20px 0px;
 }
 
-.param {
+/* .param {
     margin: 0px 200px;
     color:#FFF8DC
 }
@@ -71,4 +83,4 @@ font-size: 25px;
     margin: revert;
     margin-left: 40px;
     margin-right: 40px;
-}
+} */

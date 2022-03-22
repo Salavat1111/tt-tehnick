@@ -65,16 +65,26 @@ function OrderItem({order, name}) {
     return <div className={blOrderVisebled ? 'order--bl active' : 'order--bl'}>
         <div className="order__block--visible">
             <div className="bl__text--order">
-                <p className={"paramName"}>{name}</p>
-                <p className={"paramData"}>23/12/2022</p>
-                <p className={"paramStatus"}>В работе</p>
-            </div>
-            <div className='svg__order--bl'>
+                <div className="block__order-section">
+                   <p className="">{name}</p>
+                </div>
+                <div className="block__order-section">
+                   <p className="">23/12/2022</p>
+                </div>
+               <div className="block__order-section">
+                   <p className="">В работе</p>
+               </div>
+
+
+
+               <div className='svg__order--bl'>
                 <FaAngleDown
                     onClick={visbeledItemsBlock}
                     className={blOrderVisebled ? 'svg__icons active' : 'svg__icons'}
                 />
             </div>
+            </div>
+            
         </div>
         {blOrderVisebled ? (
             <div className="input__regstr">
