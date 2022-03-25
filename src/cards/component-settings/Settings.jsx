@@ -50,10 +50,10 @@ function Settings({isLogin, user, userService}) {
                 })
                 mergeUserParamsWithModelParams(response, modelParams);
                 console.log('updateUser setUserSettings' + JSON.stringify(response))
-                setSavedInfo("Сохранено!");
+                setSavedInfo("Сохранено!"); /*Потыкать-показал блок*/
                 setTimeout(() => {
-                    setSavedInfo("")
-                }, 3000);
+                    setSavedInfo("")/*Убрал блок*/
+                }, 3000);/*Потыкать*/
 
                 setEditable(false)
             }

@@ -88,12 +88,64 @@ function OrderItem({order, name}) {
         </div>
         {blOrderVisebled ? (
             <div className="input__regstr">
-                <InputText placeholder="Адрес" onChange={(e) => {
+                {/* <InputText placeholder="Адрес" onChange={(e) => {
                     console.log("ssss")
                 }}/>
                 <InputText placeholder="Адрес" onChange={(e) => {
                     console.log("ssss")
-                }}/>
+                }}/> */}
+                <div>
+                    <div className="block__address">
+                          <div className="addres">
+                              <p>Адрес:</p>
+                          </div>
+                          <div className="addres__text">
+                              <p>г. Самара, ул. Ново-Садовая 13б. кв-17.</p>
+                          </div>
+                    </div>
+                    <div className="block__time__date">
+                         <div className="section__block__time">
+                            <div className="time__block">
+                                 <p>Время:</p>
+                            </div>
+                            <div className="addres__text">
+                                 <p>18:00</p>
+                            </div>
+                         </div>
+                         <div className="section__block__date">
+                            <div className="time__block">
+                                 <p>Дата:</p>
+                            </div>
+                            <div className="addres__text">
+                                 <p>23.04.22</p>
+                            </div>
+                         </div>
+                    </div>
+                    <div className="block__textarrey">
+                          <div className="texterrey">
+                              <p>Описание</p>
+                          </div>
+                          <div className="textarrey__text">
+                              <p>Сломался холодильник не можем включить, течет, сломана ручка, нужен мастер.</p>
+                          </div>
+                    </div>
+
+
+<div className="btn__setting">
+
+<div className="btn__setting__container">
+    <Button>
+        Сохранить
+    </Button>
+</div>
+{/* {savedInfo} */}
+<div className="btn__setting__container">
+    <Button>Удалить</Button>
+</div>
+</div>
+
+
+                </div>
             </div>
 
 

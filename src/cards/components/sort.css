@@ -1,7 +1,7 @@
 .sortpopup__wrapper{
     height: 200px;
     width: 400px;
-    overflow: scroll;
+    /* overflow: scroll; */
     background: #ffffff;
     border-radius: 10px;
     display: flex;

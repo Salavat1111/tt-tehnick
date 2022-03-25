@@ -1,0 +1,27 @@
+.container__wrapper{
+    width: 98%;
+    height: 250px;
+    background-color: #fff;
+    display: flex;
+    margin: 50px auto;
+    border-radius: 10px;
+}
+.content__block--flex{
+    display: flex;
+}
+.block__white{
+    width: 30%;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 46px;
+}
+.block__white li{
+    text-align: inherit;
+}
+.block__grey{
+    color: #fff;
+    width: 70%;
+    background-color: #5A5A5A;
+    border-radius: 10px;
+    padding: 46px;
+}
