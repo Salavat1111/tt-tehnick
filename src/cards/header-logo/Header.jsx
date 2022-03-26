@@ -14,7 +14,7 @@ function Header({items, isLogin, user}) {
                 {
                     isLogin ?
                         <Link to={userSettingsUrl}>{user.firstName} {user.secondName}</Link> :
-                        <Link to={userSettingsUrl}>Войти</Link>
+                        <Link to={loginUrl}>Войти</Link>
                 }
             </div>
         </div>
