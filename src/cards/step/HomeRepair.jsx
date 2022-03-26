@@ -5,8 +5,8 @@ import {Button} from '../../cards'
 import {MainContext} from '../../App';
 import Pages from '../../img/1.png';
 
-function HomeRepair({props}) {
-    const {onNextStep} = React.useContext(MainContext);
+function HomeRepair() {
+    const {setStep, isLogin} = React.useContext(MainContext);
 
     return (
 
@@ -35,7 +35,7 @@ function HomeRepair({props}) {
                     </div>
 
                     <Button
-                        onClick={onNextStep}
+                        onClick={ ()=>{const step = isLogin ? 3:1; setStep(step);}}
                         homerepair
                     >Оставить заявку</Button>
                 </div>

@@ -6,8 +6,9 @@ import './step/step.css'
 import {Button, InputPassword,} from '../cards'
 import {MainContext} from "../App";
 import axios from "axios";
-import {pageAfterLogin, serverUrl} from "../common/AppConstants";
+import {loginUrl, pageAfterLogin, serverUrl} from "../common/AppConstants";
 import Cookies from "js-cookie";
+import {Link} from "react-router-dom";
 
 function PasswordForm() {
     const {user, setUser} = React.useContext(MainContext);
@@ -60,7 +61,7 @@ function PasswordForm() {
                                 </div>
                             </div>
                             <div className="cont__bl--card--reg">
-                                <p>Уже есть аккаунт? <span>Войдите</span></p>
+                                <p>Уже есть аккаунт? <Link to={loginUrl}>Войти</Link> </p>
                             </div>
                         </div>
                     </div>

@@ -4,9 +4,11 @@ import {MainContext} from '../App';
 
 
 import {Button} from '../cards'
+import {Link} from "react-router-dom";
+import {loginUrl} from "../common/AppConstants";
 
 function Registration({disabled}) {
-    const {onNextStep, user, setUser} = React.useContext(MainContext);
+    const {setStep, user, setUser} = React.useContext(MainContext);
     const [inputValue, setInputValue] = React.useState('');
     const nextDisabled = !inputValue;
 
@@ -14,10 +16,6 @@ function Registration({disabled}) {
         setInputValue(propertyName, propertyValue);
         user[propertyName] = propertyValue
         setUser(user)
-    }
-
-    const onClickNextStep = () => {
-        onNextStep();
     }
 
     return (
@@ -53,12 +51,12 @@ function Registration({disabled}) {
                         <Button
                             className={disabled}
                             disabled={nextDisabled}
-                            onClick={onClickNextStep}
+                            onClick={()=>setStep(2)}
                         >Далее</Button>
                         </div>
                     </div>
                     <div className="cont__bl--card--reg">
-                        <p>Уже есть аккаунт? <span>Войти</span></p>
+                        <p>Уже есть аккаунт? <Link to={loginUrl}>Войти</Link> </p>
                     </div>
                 </div>
             </div>

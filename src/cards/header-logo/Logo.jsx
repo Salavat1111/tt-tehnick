@@ -1,6 +1,7 @@
 import React from "react";
 import './logo.css';
 import {Link} from "react-router-dom";
+import {welcomePage} from "../../common/AppConstants";
 
 
 function Logo() {
@@ -8,7 +9,7 @@ function Logo() {
         <div className="conteinet__logo">
             <div className="block__line-left"></div>
             <div className="logo__text">
-                <h1><Link to={""}>Техник+</Link></h1>
+                <h1><a href={welcomePage}>Техник+</a></h1>
             </div>
             <div className="block__line-right"></div>
         </div>

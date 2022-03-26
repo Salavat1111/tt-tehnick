@@ -8,7 +8,7 @@ function Header({items, isLogin, user}) {
     return (
         <div className="wrapper__container-header">
             <Logo/>
-            <Menu items={items}/>
+            {isLogin && <Menu items={items}/>}
             <div className="border__line-block"></div>
             <div className="block__lastName">
                 {

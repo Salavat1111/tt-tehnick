@@ -40,8 +40,9 @@ function Login() {
 
     return (
         (
-            <>
-                <div className="content">
+            <div className="wrapper__content-registr">
+                <div className={"content-registr"}>
+
                     <div>
                         <div>
                             <h1 className="zgl__login--card--reg">Войдите</h1>
@@ -69,13 +70,14 @@ function Login() {
                                 className="field"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <div>
+                            <div className="blok__button--registr">
+                                <Button onClick={handleSubmit}>Войти</Button>
                             </div>
-                            <Button onClick={handleSubmit}>Войти</Button>
+
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         )
     );
 }

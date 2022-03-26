@@ -6,6 +6,9 @@ import EmailInput from "../EmailInput";
 import AddressInput from "../AddressInput";
 import TextInput from "../TextInput";
 import EditableInput from "../inputs/EditableInput";
+import {get} from "axios";
+import {logoutUrl, serverUrl, welcomePage} from "../../common/AppConstants";
+import Cookies from 'js-cookie';
 
 function Settings({isLogin, user, userService}) {
     const [userSettings, setUserSettings] = React.useState({})
@@ -36,6 +39,24 @@ function Settings({isLogin, user, userService}) {
         );
         setUserParameters(newParams);
     };
+
+    function onExit() {
+        console.log("onExit")
+        get(serverUrl + logoutUrl,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('access_token')}`,
+                    'X-CSRF-TOKEN': Cookies.get('csrf_token')
+                }
+            }).then((e)=>{
+            console.log(e)
+            Cookies.remove('access_token')
+            window.location = welcomePage
+        }).catch((e) =>{
+            console.log("error onExit")
+            console.log(e)
+        });
+    }
 
     function onSaveSettings() {
         let toSaveData = {...userSettings}
@@ -209,6 +230,9 @@ function Settings({isLogin, user, userService}) {
                 {savedInfo}
                 <div className="btn__setting__container">
                     <Button onClick={onSaveSettings}>Сохранить</Button>
+                </div>
+                <div className="btn__setting__container">
+                    <Button onClick={onExit}>Выйти</Button>
                 </div>
             </div>
         </div>;

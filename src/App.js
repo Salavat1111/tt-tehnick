@@ -14,6 +14,7 @@ const stepsComponents = {
   1: Registration,
   // 2: FormatNamber,
   2: PasswordForma,
+  3: Repair
 };
 
 export const MainContext = React.createContext({});
@@ -62,9 +63,7 @@ function App() {
                 <Header items={items} isLogin={isLogin} user={user}/>
               </div>
             </div>
-            <BtnBurger/>
             <div className="content__repair">
-
               <Routes>
                 <Route path="/rooms/1" element={<Repair user={user} userService={userService}/>}/>
                 <Route path="/rooms/2" element={<СardOrder/>}/>
@@ -73,8 +72,8 @@ function App() {
                 <Route path="/l" element={< Login/>}/>
                 <Route
                     path="/"
-                    element={<MainContext.Provider value={{step, onNextStep, user, setUser}}>
-                      <Step/>
+                    element={<MainContext.Provider value={{step, setStep, user, setUser, isLogin}}>
+                      <Step />
                     </MainContext.Provider>}
                 />
               </Routes>
