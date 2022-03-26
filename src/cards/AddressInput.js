@@ -4,15 +4,12 @@ import ReadOnlyParam from "./inputs/ReadOnlyParam";
 function AddressInput({paramName, placeHolder, img, editable, setValue, visible}) {
     const [items, setItems] = React.useState([]);
     const [activeItem, setActiveItem] = React.useState(0);
-    const [showPopup, setShowPopup] = React.useState(false);
     const [activeLabel, setActiveLabel] = React.useState(placeHolder);
-    const onSelectItem = (e, index) => {
-        console.log("onSelectItem index:" + index)
-
+    const onSelectedItem = (e, index) => {
         setActiveItem(index)
-        setShowPopup(false)
         setActiveLabel(items[index])
         setValue(paramName, items[index])
+        setItems([])
     }
 
     async function getAddresses(event) {
@@ -37,8 +34,10 @@ function AddressInput({paramName, placeHolder, img, editable, setValue, visible}
             .then(response => response.text())
             .then(result => {
                 let suggestionItems = JSON.parse(result).suggestions.map(item => item.value);
+                if (suggestionItems.length === 0) {
+                    suggestionItems.push("Адрес не найден")
+                }
                 setItems(suggestionItems)
-                setShowPopup(true)
                 setActiveLabel(query)
             })
             .catch(error => {
@@ -47,41 +46,48 @@ function AddressInput({paramName, placeHolder, img, editable, setValue, visible}
             });
     }
 
-    function getListItems() {
-        return <>
-            {items.map((name, index) => {
-                let li = <li
-                    // className={activeItem === index ? 'active' : ''}
-                    onClick={(e) => onSelectItem(e, index)}
-                    key={`${index}`}>{name}</li>
-                return li
-            })}
-        </>;
+    function onKeyDown(e) {
+        if (e.key === "ArrowDown") {
+            let nextItem = activeItem+1;
+            if (nextItem < items.length) {
+                setActiveItem(nextItem)
+            }
+        } else if (e.key === "ArrowUp") {
+            let nextItem = activeItem-1;
+            if (nextItem >= 0) {
+                setActiveItem(nextItem)
+            }
+        }
+        else if (e.key === "Enter") {
+            setActiveLabel(items[activeItem])
+            setItems([])
+        }
     }
 
-    return visible ?
-        editable ?
-            <>
-                <div className="block__setting-input">
+    return visible ? editable ?
+            <div className='block__setting-input'>
                     <p>{paramName}</p>
                     <input onInput={(e) => getAddresses(e)} className='sort__span2'
-                           onKeyDown={(e) => {
-                               //if up button
-                               // setActiveItem(activeItem + 1)
-                               //if down button
-                               // setActiveItem(activeItem + 1)
-                               console.log("onKeyDown: " + activeItem)
-                           }}
+                           onKeyDown={(e) => onKeyDown(e)}
                            value={activeLabel}/>
-                    {showPopup && <div className='sortpopup__wrapper'>
-                        <ul>
-                            {getListItems()}
-                        </ul>
-                    </div>}
-                </div>
-            </> :
+                    <ListItems items={items} activeItem={activeItem} onSelectedItem={onSelectedItem}/>
+                </div> :
             <ReadOnlyParam value={placeHolder} img={img} paramName={paramName}/> :
         <></>;
+}
+
+function ListItems({items, activeItem, onSelectedItem}) {
+    let listItems = items.map((name, index) => {
+        return <li
+            className={activeItem === index ? 'active' : ''}
+            onClick={(e) => onSelectedItem(e, index)}
+            key={`${index}`}>{name}</li>
+    });
+    return items.length >0 && <div className='sortpopup__wrapper scroll'>
+        <dl>
+            {listItems}
+        </dl>
+    </div>
 }
 
 export default AddressInput;
