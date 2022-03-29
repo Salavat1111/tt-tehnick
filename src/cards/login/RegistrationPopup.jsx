@@ -5,20 +5,20 @@ import React, {useState} from "react";
 function RegistrationPopup({user, setUser, createUser}) {
 
     const [action, setAction] = useState(0)
-    const labels = ["Регистрация", "Придумайте пароль"]
-    const buttonActions = [() => setAction((prev) => prev + 1), () => createUser(user)]
 
     return <RegistrationPopupTemplate>
-        <RegistrationHeader label={labels[action]}/>
+        <RegistrationHeader page={action}/>
         <RegistrationFields page={action} user={user} setUser={setUser}/>
-        <RegistrationButtons onClick={buttonActions[action]}/>
+        <RegistrationButtons page={action} user={user} setAction={setAction} createUser={createUser}/>
     </RegistrationPopupTemplate>
 }
 
 
-function RegistrationHeader({label}) {
+function RegistrationHeader({page}) {
+    const labels = ["Регистрация", "Придумайте пароль"]
+
     return <div>
-        <h1 className="zgl__login--card--reg">{label}</h1>
+        <h1 className="zgl__login--card--reg">{labels[page]}</h1>
         <div className="bl__registr">
             <p>Заполните поля, чтобы создать аккаунт</p>
         </div>
@@ -75,9 +75,11 @@ function RegistrationFields({user, setUser, page}) {
     return pages[page]
 }
 
-function RegistrationButtons({onClick}) {
+function RegistrationButtons({page, setAction, createUser, user}) {
+    const buttonActions = [() => setAction((prev) => prev + 1), () => createUser(user)]
+
     return <div className="blok__button--registr">
-        <Button onClick={onClick}>Зарегистрироваться</Button>
+        <Button onClick={buttonActions[page]}>Зарегистрироваться</Button>
     </div>
 }
 

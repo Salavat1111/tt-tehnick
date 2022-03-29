@@ -2,7 +2,6 @@ import React from "react";
 import './step.css';
 import '../../macro.css';
 import {Button} from '../../cards'
-import {MainContext} from '../../App';
 import Pages from '../../img/1.png';
 import {Link} from "react-router-dom";
 import {userSettingsUrl} from "../../common/AppConstants";
