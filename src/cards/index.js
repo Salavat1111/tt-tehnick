@@ -10,11 +10,11 @@ export { default as InputTimeDate } from './InputTimeDate';
 
 export { default as Logo2 } from './component-btn-menu/Logo2';
 export { default as NavigationBottom } from './NavigationBottom';
-export { default as Registration } from './Registration';
+export { default as Registration } from './login/Registration';
 export { default as Repair } from './components/Repair';
 export { default as Settings } from '../cards/component-settings/Settings';
 
-export { default as PasswordForma } from './PasswordForm';
+export { default as PasswordForma } from './login/PasswordForm';
 export { default as App } from '../App';
 
 

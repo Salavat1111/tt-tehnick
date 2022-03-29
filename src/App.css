@@ -200,7 +200,7 @@ a{
   margin: auto;
 }
 .zgl__login--card--reg{
-  margin-top: 34px;
+    margin-top: 34px;
     margin-bottom: 40px;
     font-size: 29px;
     font-family: 'Nunito Sans', sans-serif;
@@ -281,12 +281,7 @@ p a{
   margin: auto;
   border-radius: 20px;
 }
-.content-registr-password{
-  width: 600px;
-  height: 310px;
-  background: #fff;
-  border-radius: 20px;
-}
+
 .bl__password{
   margin-top: 115px;
 }

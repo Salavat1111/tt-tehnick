@@ -2,23 +2,16 @@ import './App.css';
 
 import {FaBorderAll, FaPlusCircle, FaRegSun} from "react-icons/fa"; // заказы // создать // настройки
 import {СardOrder} from "./cards/comp-applications";
-import {BtnBurger, HistoryMap, HomeRepair, PasswordForma, Registration, Repair, Settings,} from './cards'
+import {HistoryMap, HomeRepair, Repair, Settings,} from './cards'
 import {Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {Header} from './cards/header-logo'
-import Login from "./cards/Login";
 import UserService from "./servises/UserService";
 import {Footer} from "./cards/footer";
-const stepsComponents = {
-  0: HomeRepair,
-  1: Registration,
-  // 2: FormatNamber,
-  2: PasswordForma,
-  3: Repair
-};
+import LoginPopup from "./cards/login/LoginPopup";
+import RegistrationPopup from "./cards/login/RegistrationPopup";
 
 export const MainContext = React.createContext({});
-
 function App() {
 
   const userService = new UserService();
@@ -28,13 +21,7 @@ function App() {
     {value: 'настройки', href: '/rooms/4', icon: <FaRegSun/>,},
   ];
 
-  const onNextStep = () => {
-    setStep((prev) => prev + 1)
-  }
-
-  const [step, setStep] = React.useState(0)
   const [user, setUser] = React.useState({})
-  const Step = stepsComponents[step];
   const [isLogin, setIsLogin] = React.useState(false)
 
   React.useEffect(() => {
@@ -69,12 +56,10 @@ function App() {
                 <Route path="/rooms/2" element={<СardOrder/>}/>
                 <Route path="/rooms/3" element={<HistoryMap/>}/>
                 <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user} userService={userService}/>}/>
-                <Route path="/l" element={< Login/>}/>
-                <Route
-                    path="/"
-                    element={<MainContext.Provider value={{step, setStep, user, setUser, isLogin}}>
-                      <Step />
-                    </MainContext.Provider>}
+
+                <Route path="/l" element={<LoginPopup login={userService.login}/>}/>
+                <Route path="/r" element={<RegistrationPopup createUser={userService.creteUser} user={user} setUser={setUser}/>}/>
+                <Route path="/" element={<HomeRepair isLogin={isLogin}/>}
                 />
               </Routes>
 

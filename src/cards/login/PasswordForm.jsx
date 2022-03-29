@@ -1,12 +1,12 @@
 import React from "react";
-import '../App.css';
-import './step/step.css'
+import '../../App.css';
+import '../step/step.css'
 
 
-import {Button, InputPassword,} from '../cards'
-import {MainContext} from "../App";
+import {Button, InputPassword,} from '../index'
+import {MainContext} from "../../App";
 import axios from "axios";
-import {loginUrl, pageAfterLogin, serverUrl} from "../common/AppConstants";
+import {loginUrl, pageAfterLogin, serverUrl} from "../../common/AppConstants";
 import Cookies from "js-cookie";
 import {Link} from "react-router-dom";
 
@@ -36,9 +36,8 @@ function PasswordForm() {
 
     return (
         <>
-            <div className="wrapper__content-password">
-                <div className="content-registr-password">
-                    <div className="content">
+            <div className="wrapper__content-registr">
+                <div className="content-registr">
                         <div>
                             <div>
                                 <h1 className="zgl__login--card--reg">Придумайте пароль</h1>
@@ -64,7 +63,6 @@ function PasswordForm() {
                                 <p>Уже есть аккаунт? <Link to={loginUrl}>Войти</Link> </p>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </>
