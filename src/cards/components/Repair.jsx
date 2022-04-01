@@ -1,12 +1,13 @@
 import './sort.css';
 import logos from '../../img/2.png';
-import {FaInfoCircle} from "react-icons/fa";
+import {FaInfoCircle, FaMapMarkerAlt} from "react-icons/fa";
 import {Button, InputText, InputTimeDate,} from '../../cards'
 import {QuestionBlock, SortPopup} from "../components";
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, {useEffect, useState} from "react";
 import {serverUrl} from "../../common/AppConstants";
+import AddressInput from "../AddressInput";
 
 async function getTechnicalTypes() {
     const url = serverUrl + `/fixer/api/attrs/1`;
@@ -65,6 +66,17 @@ function Repair({user, userService}) {
             return false
         }
     }
+    function setAddress(a,b){
+        console.log("changeOrderParam ", a, b)
+        let parameter = {
+            "name": "Ваш Адрес",
+            "attrId": "11",
+            "type": "TEXT",
+            "value":b
+        };
+        console.log("changeOrderParam ", JSON.stringify(parameter))
+        setOrderParameter(parameter);
+    }
 
     return (
         <div className="wrapper__content-repair">
@@ -74,15 +86,9 @@ function Repair({user, userService}) {
                         <img className="repair__page-img" alt="" src={logos}/>
                     </div>
                     <div className="input__regstr">
-                        <InputText placeholder="Адрес" onChange={(e) =>{
-                            let parameter = {
-                                "name": "Ваш Адрес",
-                                "attrId": "11",
-                                "type": "TEXT",
-                                "value": e.target.value
-                            };
-                            setOrderParameter(parameter);
-                        }}/>
+                        <AddressInput placeHolder="Адрес"
+                                      setValue={setAddress}
+                                      editable visible isFlex/>
                         <SortPopup
                             items={technicalTypes}
                             onChange={(e) =>{
