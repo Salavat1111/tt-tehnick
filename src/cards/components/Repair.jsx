@@ -91,12 +91,13 @@ function Repair({user, userService}) {
                                       editable visible isFlex/>
                         <SortPopup
                             items={technicalTypes}
-                            onChange={(e) =>{
+                            handleValue={(value) =>{
+                                console.log("SortPopup: " + value)
                                 let parameter = {
                                     "name": "Что чиним",
                                     "attrId": "1",
                                     "type": "LIST",
-                                    "value": e.target.value /*active list item*/
+                                    "value": value
                                 };
                                 setOrderParameter(parameter);
                             }}

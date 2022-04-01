@@ -21,7 +21,7 @@ function SortPopup({handleValue, items}) {
     const onSelectItem = (index) => {
         setActiveItem(index)
         if (handleValue)
-            handleValue(items[activeItem])
+            handleValue(items[index])
     }
 
     React.useEffect(() => {
