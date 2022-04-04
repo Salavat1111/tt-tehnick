@@ -15,12 +15,12 @@ import {
 
 function СardOrder() {
     return <div>
-            <PageHeader />
-            <Orders />
-        </div>
+        <PageHeader/>
+        <Orders/>
+    </div>
 }
 
-function PageHeader(){
+function PageHeader() {
     return <div className="content__order-visible">
         <Button>Мои заказы</Button>
         <a>История</a>
@@ -94,57 +94,64 @@ function OrderItemHeader({column}) {
 }
 
 function OrderItemBody({showOrderBody, orderParams}) {
+    const [readOnly, setReadOnly] = useState(true)
+
+    function onCancelEdit() {
+        setReadOnly(!readOnly)
+    }
+
+    function onSave() {
+        setReadOnly(!readOnly)
+    }
+
+    let buttons = [
+        <Button onClick={readOnly ? () => setReadOnly(!readOnly): onSave}>
+            {readOnly ? 'Редактировать' : 'Сохранить'}
+        </Button>
+    ]
+
+    if (!readOnly) {
+        buttons.push(<Button onClick={onCancelEdit}>Отменить</Button>)
+    }
+
     return showOrderBody && <div className="input__regstr">
-        <div>
-            <div className="block__address">
-                <div className="addres">
-                    <p>Адрес:</p>
-                </div>
-                <div>
-                    {/*<p>{orderParams[ADDRESS_ATTR_ID]}</p>*/}
-                    <input value={orderParams[ADDRESS_ATTR_ID]}/>
-                </div>
+        <div className="block__address">
+            <div className="address">
+                <p>Адрес:</p>
             </div>
-            <div className="block__time__date">
-                <div className="section__block__time">
-                    <div className="time__block">
-                        <p>Время:</p>
-                    </div>
-                    <div >
-                        <p>{orderParams[TIME_ATTR_ID]}</p>
-                        {/*<input value={orderParams[TIME_ATTR_ID]}/>*/}
-                    </div>
+            <InputParameter readOnly={readOnly} value={orderParams[ADDRESS_ATTR_ID]}/>
+        </div>
+        <div className="block__time__date">
+            <div className="section__block__time">
+                <div className="time__block">
+                    <p>Время:</p>
                 </div>
-                <div className="section__block__date">
-                    <div className="time__block">
-                        <p>Дата:</p>
-                    </div>
-                    <div >
-                        <p>{orderParams[DATA_ATTR_ID]}</p>
-                        {/*<input value={orderParams[DATA_ATTR_ID]}/>*/}
-                    </div>
-                </div>
+                <InputParameter readOnly={readOnly} value={orderParams[TIME_ATTR_ID]}/>
             </div>
-            <div className="block__textarrey">
-                <div className="texterrey">
-                    <p>Описание</p>
+            <div className="section__block__date">
+                <div className="time__block">
+                    <p>Дата:</p>
                 </div>
-                <div className="textarrey__text">
-                    {/*<p>{orderParams[DESCRIPTION_ATTR_ID]}</p>*/}
-                    <input value={orderParams[DESCRIPTION_ATTR_ID]}/>
-                </div>
-            </div>
-            <div className="btn__setting">
-                <div className="btn__setting__container">
-                    <Button>
-                        Редактировать
-                    </Button>
-                </div>
-                <div className="btn__setting__container">
-                    <Button>Отменить</Button>
-                </div>
+                <InputParameter readOnly={readOnly} value={orderParams[DATA_ATTR_ID]}/>
             </div>
         </div>
+        <div className="block__text_array">
+            <div className="text__array">
+                <p>Описание</p>
+            </div>
+            <InputParameter readOnly={readOnly} value={orderParams[DESCRIPTION_ATTR_ID]}/>
+        </div>
+        <div className="btn__setting">
+            <div className="btn__setting__container">
+                {buttons}
+            </div>
+        </div>
+    </div>
+}
+
+function InputParameter({readOnly, value}) {
+    return <div>
+        {readOnly ? <p>{value}</p> : <input value={value}/>}
     </div>
 }
 

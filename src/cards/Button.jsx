@@ -6,20 +6,16 @@ import classNames from 'classnames';
 
 function Button({children, disabled, onClick, outline, homerepair,}) {
 
-    return (
-        <div>
-            <button
-                disabled={disabled}
-                onClick={onClick}
-                className={classNames('btn__burger', {
-                    'button--outline': outline,
-                    'button--homerepair': homerepair,
-                    'button--disabled': disabled,
-                })}>
-                {children}
-            </button>
-        </div>
-    );
+    return <button
+        disabled={disabled}
+        onClick={onClick}
+        className={classNames('btn__burger', {
+            'button--outline': outline,
+            'button--homerepair': homerepair,
+            'button--disabled': disabled,
+        })}>
+        {children}
+    </button>
 }
 
 export default Button;

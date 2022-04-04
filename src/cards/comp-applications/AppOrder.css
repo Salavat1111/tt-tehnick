@@ -98,7 +98,7 @@ font-size: 25px;
 
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-.addres{
+.address{
     border-radius: 10px;
     display: flex;
     padding: 0px 26px;
@@ -108,7 +108,7 @@ font-size: 25px;
     height: 50px;
     align-items: center;
 }
-.addres p input{
+.address p input{
     color: #fff;
     font-weight: 100;
 }
@@ -155,7 +155,7 @@ font-size: 25px;
 }
 
 
-.block__textarrey{
+.block__text_array{
     width: 60%;
     display: flex;
     margin: 10px auto;
@@ -166,10 +166,10 @@ font-size: 25px;
 
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-.textarrey__text{
+.text__array__text{
     padding: 14px 10px 26px 20px;
 }
-.texterrey{
+.text__array{
     border-radius: 10px;
     display: flex;
     /* padding: 0px 26px; */
@@ -180,7 +180,7 @@ font-size: 25px;
     align-items: center;
     justify-content: center;
 }
-.texterrey p input{
+.text__array p input{
     color: #fff;
     font-weight: 100;
 }
