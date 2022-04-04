@@ -4,10 +4,10 @@ import '../../macro.css';
 import {Button} from '../../cards'
 import Pages from '../../img/1.png';
 import {Link} from "react-router-dom";
-import {userSettingsUrl} from "../../common/AppConstants";
+import {createOrderUrl} from "../../common/AppConstants";
 
 function HomeRepair({isLogin}) {
-    const nextPage = !isLogin ? "/r" : userSettingsUrl
+    const nextPage = !isLogin ? "/r" : createOrderUrl
     return (
         <div className="conteiner__wr__homepage">
             <div className="block__button--homerepair">

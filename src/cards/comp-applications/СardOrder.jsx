@@ -2,153 +2,157 @@ import React from "react";
 import react, {useEffect, useState} from "react";
 import './AppOrder.css';
 import {Button} from '../../cards';
-import {FaAngleDown} from "react-icons/fa"; 
-import {serverUrl} from "../../common/AppConstants";
-import axios from "axios";
-import Cookies from "js-cookie";
+import {FaAngleDown} from "react-icons/fa";
+import OrderService from "../../servises/OrderService";
+import {
+    ADDRESS_ATTR_ID,
+    DATA_ATTR_ID,
+    DESCRIPTION_ATTR_ID,
+    TECH_TYPE_ATTR_ID,
+    TIME_ATTR_ID
+} from "../../common/AppConstants";
 
-
-async function getOrders() {
-    const url = serverUrl + `/fixer/api/user/orders`;
-    const res = await axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${Cookies.get('access_token')}`,
-            'X-CSRF-TOKEN': Cookies.get('csrf_token')
-        }
-    });
-    return res.data;
-}
 
 function СardOrder() {
+    return <div>
+            <PageHeader />
+            <Orders />
+        </div>
+}
+
+function PageHeader(){
+    return <div className="content__order-visible">
+        <Button>Мои заказы</Button>
+        <a>История</a>
+    </div>
+}
+
+function Orders() {
+    const orderService = new OrderService();
     const [orderList, setOrderList] = useState([])
 
     useEffect(
         () => {
-            getOrders().then(response => {
+            orderService.getOrders().then(response => {
                 let res = response.map(order => {
                     console.log(order)
-                    return <OrderItem key={order?.id} order={order}/>
+                    return <OrderItem key={order?.id} order={order} orderService={orderService}/>
                 })
                 setOrderList(res)
             })
         }, []
     )
-
-    return (
-        <>
-            <div className="content__order-visible">
-                <Button>Мои заказы</Button>
-                <a>История</a>
-            </div>
-            {/*<OrderItem key={"1"} name={"Холодильник"}/>*/}
-            {/*<OrderItem key={"2"} name={"Печка"}/>*/}
-            {/*<OrderItem key={"3"} name={"Телевизор"}/>*/}
-            {orderList}
-        </>
-    );
+    return <>{orderList}</>
 }
 
-
-function OrderItem({order}) {
-    const ADDRESS_ATTR_ID = 11;
-    const DATA_ATTR_ID = 8;
-    const TIME_ATTR_ID = 46;
-    const TECH_TYPE_ATTR_ID = 1;
-    const DESCRIPTION_ATTR_ID = 6;
-
-    const [showOrder, setShowOrder] = react.useState(false)
-
-    function getParameter(attrId) {
-        if (order?.parameters)
-        for (let parameter of order.parameters) {
-            if (parameter.attrId === attrId) return parameter;
-        }
-        return null
-    }
-
-    function getParameterValue(attrId) {
-        return getParameter(attrId)?.value;
-    }
-
+function OrderItem({order, orderService}) {
+    const [showOrderBody, setShowOrderBody] = react.useState(false)
     const changeOrderVisibility = () => {
-        setShowOrder(!showOrder)
+        setShowOrderBody(!showOrderBody)
     }
-    
-    return <div className={showOrder ? 'order--bl active' : 'order--bl'}>
-        <div className="order__block--visible">
-            <div className="bl__text--order">
-                <div className="block__order-section">
-                    <p className="">{getParameterValue(TECH_TYPE_ATTR_ID)}</p>
-                </div>
-                <div className="block__order-section">
-                    <p className="">{getParameterValue(DATA_ATTR_ID)}</p>
-                </div>
-                <div className="block__order-section">
-                    <p className="">{order?.status}</p>
-                </div>
-                <div className='svg__order--bl'>
-                    <FaAngleDown
-                        onClick={changeOrderVisibility}
-                        className={showOrder ? 'svg__icons active' : 'svg__icons'}
-                    />
-                </div>
-            </div>
 
-        </div>
-        {showOrder ? (
-            <div className="input__regstr">
-                <div>
-                    <div className="block__address">
-                        <div className="addres">
-                            <p>Адрес:</p>
-                        </div>
-                        <div className="addres__text">
-                            <p>{getParameterValue(ADDRESS_ATTR_ID)}</p>
-                        </div>
-                    </div>
-                    <div className="block__time__date">
-                        <div className="section__block__time">
-                            <div className="time__block">
-                                <p>Время:</p>
-                            </div>
-                            <div className="addres__text">
-                                <p>{getParameterValue(TIME_ATTR_ID)}</p>
-                            </div>
-                        </div>
-                        <div className="section__block__date">
-                            <div className="time__block">
-                                <p>Дата:</p>
-                            </div>
-                            <div className="addres__text">
-                                <p>{getParameterValue(DATA_ATTR_ID)}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="block__textarrey">
-                        <div className="texterrey">
-                            <p>Описание</p>
-                        </div>
-                        <div className="textarrey__text">
-                            <p>{getParameterValue(DESCRIPTION_ATTR_ID)}</p>
-                        </div>
-                    </div>
-                    <div className="btn__setting">
-                        <div className="btn__setting__container">
-                            <Button>
-                                Сохранить
-                            </Button>
-                        </div>
-                        {/* {savedInfo} */}
-                        <div className="btn__setting__container">
-                            <Button>Удалить</Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ) : <div></div>
-        }
-    </div>;
+    let headerColumns = [orderService.getParameterValue(order, TECH_TYPE_ATTR_ID),
+        orderService.getParameterValue(order, DATA_ATTR_ID),
+        order?.status,
+        <FaAngleDown
+            onClick={changeOrderVisibility}
+            className={showOrderBody ? 'svg__icons active' : 'svg__icons'}
+        />
+    ];
+
+    let orderParams = {}
+    orderParams[ADDRESS_ATTR_ID] = orderService.getParameterValue(order, ADDRESS_ATTR_ID)
+    orderParams[TIME_ATTR_ID] = orderService.getParameterValue(order, TIME_ATTR_ID)
+    orderParams[DATA_ATTR_ID] = orderService.getParameterValue(order, DATA_ATTR_ID)
+    orderParams[DESCRIPTION_ATTR_ID] = orderService.getParameterValue(order, DESCRIPTION_ATTR_ID)
+
+    return <OrderItemContainer showOrderBody={showOrderBody}>
+        <OrderItemHeader column={headerColumns}/>
+        <OrderItemBody showOrderBody={showOrderBody} orderParams={orderParams}/>
+    </OrderItemContainer>;
 }
 
+
+function OrderItemHeader({column}) {
+    return <div className="order__block--visible">
+        <div className="bl__text--order">
+            <div className="block__order-section">
+                <p className="">{column[0]}</p>
+            </div>
+            <div className="block__order-section">
+                <p className="">{column[1]}</p>
+            </div>
+            <div className="block__order-section">
+                <p className="">{column[2]}</p>
+            </div>
+            <div className='svg__order--bl'>
+                {column[3]}
+            </div>
+        </div>
+
+    </div>
+}
+
+function OrderItemBody({showOrderBody, orderParams}) {
+    return showOrderBody && <div className="input__regstr">
+        <div>
+            <div className="block__address">
+                <div className="addres">
+                    <p>Адрес:</p>
+                </div>
+                <div>
+                    {/*<p>{orderParams[ADDRESS_ATTR_ID]}</p>*/}
+                    <input value={orderParams[ADDRESS_ATTR_ID]}/>
+                </div>
+            </div>
+            <div className="block__time__date">
+                <div className="section__block__time">
+                    <div className="time__block">
+                        <p>Время:</p>
+                    </div>
+                    <div >
+                        <p>{orderParams[TIME_ATTR_ID]}</p>
+                        {/*<input value={orderParams[TIME_ATTR_ID]}/>*/}
+                    </div>
+                </div>
+                <div className="section__block__date">
+                    <div className="time__block">
+                        <p>Дата:</p>
+                    </div>
+                    <div >
+                        <p>{orderParams[DATA_ATTR_ID]}</p>
+                        {/*<input value={orderParams[DATA_ATTR_ID]}/>*/}
+                    </div>
+                </div>
+            </div>
+            <div className="block__textarrey">
+                <div className="texterrey">
+                    <p>Описание</p>
+                </div>
+                <div className="textarrey__text">
+                    {/*<p>{orderParams[DESCRIPTION_ATTR_ID]}</p>*/}
+                    <input value={orderParams[DESCRIPTION_ATTR_ID]}/>
+                </div>
+            </div>
+            <div className="btn__setting">
+                <div className="btn__setting__container">
+                    <Button>
+                        Редактировать
+                    </Button>
+                </div>
+                <div className="btn__setting__container">
+                    <Button>Отменить</Button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+// const OrderItemContainer = styled.div`${(showOrderBody) => {return showOrderBody ? css`order--bl active` : css`order--bl`;}}`
+function OrderItemContainer({showOrderBody, children}) {
+    return <div className={showOrderBody ? 'order--bl active' : 'order--bl'}>
+        {children}
+    </div>
+}
 
 export default СardOrder;
