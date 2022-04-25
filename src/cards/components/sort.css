@@ -30,6 +30,7 @@
 .sortpopup__block{
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .sortpopup__block2{
@@ -107,11 +108,13 @@ li{
     top: 11px;
  } */
 .icon__svg{
+    cursor: pointer;
     position: relative;
     top: 27px;
     left: -180px;
 }
 .icon__svg--outline{
+    cursor: pointer;
     position: relative;
     top: 27px;
     left: 44px;
@@ -119,22 +122,24 @@ li{
 
 
 .sortpopup__wrapper-quest{
-    height: 140px;
-    width: 250px;
-    background: #ffffff;
+    height: 186px;
+    width: 360px;
+    background: #7e7e7e;
     border-radius: 10px;
     display: flex;
     align-items: center;
     position: absolute;
     /* margin: auto; */
     margin-top: 10;
-    top: 497px;
-    left: 632px;
+    top: 388px;
+    z-index: 1;
+    left: 493px;
     box-shadow: 0px 4px 15px -8px rgb(0 0 3 / 50%);
 }
 .sortpopup__wrapper-quest p{
     padding: 10px;
     text-align: center;
+    font-size: 20px;
 }
 /*----------------------QuestionBlock-----------------------*/
 
@@ -207,3 +212,24 @@ li{
 
 
 /*===========стили div в cards Repair.jsx=============*/
+
+
+
+/*===========стили div в cards QuestionBlock.jsx задаю стили active выбор времени=============*/
+.active__p.active{
+    width: 230px;
+    height: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffeb49;
+    border-radius: 10px;
+}
+
+
+.section__items{
+    cursor: pointer;
+    width: 230px;
+    margin: auto;
+}
+/*===========стили div в cards QuestionBlock.jsx задаю стили active выбор времени=============*/

@@ -19,7 +19,7 @@ async function getTechnicalTypes() {
     return res.data;
 }
 
-function Repair({user, userService}) {
+function Repair({user, userService,ф}) {
     const [technicalTypes, setTechnicalTypes] = useState([])
     const [order, setOrder] = useState({"status": "OPEN", "parameters":[]})
 
@@ -66,6 +66,18 @@ function Repair({user, userService}) {
         }
     }
 
+
+    // пробросил из компонента QuestionBlock itemsQuestionBlock, activeItem
+    // const activeLabel = itemsQuestionBlock[activeItem];
+    const [activeItem, setActiveItem] = React.useState(0)
+    const onSelectItem = (index) => {
+        setActiveItem(index)
+    }
+
+    const  itemsQuestionBlock = ['c 8:00 до 12:00', 'с 12:00 до 18:00', 'c 18:00 до 20:00']
+    const activeLabel = itemsQuestionBlock[activeItem]
+    //прокинуть от родительского компонента к дочернему все стейты и масси
+    // пробросил из компонента QuestionBlock itemsQuestionBlock, activeItem
     return (
         <div className="wrapper__content-repair">
             <div className="content-registr-repair">
@@ -98,8 +110,15 @@ function Repair({user, userService}) {
                         <div className="block__time-date">
                             <QuestionBlock
                                 outline
-                                icons={[<FaInfoCircle/>]}/>
-                            <InputTimeDate placeholder="время" onChange={(e) =>{
+                                icons={[<FaInfoCircle/>]}
+                                itemsQuestionBlock={itemsQuestionBlock}
+                                activeItem={activeItem}
+                                setActiveItem={setActiveItem}
+                                onSelectItem={onSelectItem}
+                                />
+                            <InputTimeDate placeholder={activeLabel} 
+                        
+                            onChange={(e) =>{
                                 let parameter = {
                                     "name": "Время",
                                     "attrId": "46",
@@ -119,7 +138,7 @@ function Repair({user, userService}) {
                             }}/>
                             <QuestionBlock
                                 icons={[<FaInfoCircle/>]}
-                                items={['Напишите любую для Вас удобную дату. Пример "22.02.2022"']}
+                                itemsQuestionBlock={['Напишите любую для Вас удобную дату. Пример "22.02.2022"']}
                             />
                         </div>
                         <textarea placeholder="напишите что случилось"
