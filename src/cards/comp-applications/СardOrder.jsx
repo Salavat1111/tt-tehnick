@@ -12,7 +12,6 @@ import {
     TIME_ATTR_ID
 } from "../../common/AppConstants";
 
-
 function СardOrder() {
     return <div>
         <PageHeader/>
@@ -62,13 +61,18 @@ function OrderItem({order, orderService}) {
 
     let orderParams = {}
     orderParams[ADDRESS_ATTR_ID] = orderService.getParameterValue(order, ADDRESS_ATTR_ID)
-    orderParams[TIME_ATTR_ID] = orderService.getParameterValue(order, TIME_ATTR_ID)
-    orderParams[DATA_ATTR_ID] = orderService.getParameterValue(order, DATA_ATTR_ID)
+    orderParams[TIME_ATTR_ID]    = orderService.getParameterValue(order, TIME_ATTR_ID)
+    orderParams[DATA_ATTR_ID]    = orderService.getParameterValue(order, DATA_ATTR_ID)
     orderParams[DESCRIPTION_ATTR_ID] = orderService.getParameterValue(order, DESCRIPTION_ATTR_ID)
+
 
     return <OrderItemContainer showOrderBody={showOrderBody}>
         <OrderItemHeader column={headerColumns}/>
-        <OrderItemBody showOrderBody={showOrderBody} orderParams={orderParams}/>
+        <OrderItemBody showOrderBody={showOrderBody} orderParams={orderParams}
+                       orderId={order.id}
+                       orderService={orderService}
+                       orderParameters={order.parameters}
+        />
     </OrderItemContainer>;
 }
 
@@ -93,15 +97,58 @@ function OrderItemHeader({column}) {
     </div>
 }
 
-function OrderItemBody({showOrderBody, orderParams}) {
+function OrderItemBody({showOrderBody, orderParams, orderService, orderId, orderParameters}) {
     const [readOnly, setReadOnly] = useState(true)
-
+    const [params, setParams] = useState(orderParams)
+    const [orderState, setOrderState] = useState(orderParameters ? orderParameters : {})
+    useEffect(() => {
+        let newOrderParameters = [...orderState]
+        for (let p of newOrderParameters) {
+            p.oldValue = p.value
+        }
+        setOrderState(newOrderParameters)
+    },[])
     function onCancelEdit() {
+        if (!readOnly) {
+            let newOrderParameters = [...orderState]
+            for (let param of newOrderParameters) {
+                if (param.oldValue) {
+                    param.value = param.oldValue
+                }
+                param.toSave = false
+            }
+            setOrderState(newOrderParameters)
+        }
         setReadOnly(!readOnly)
     }
 
+    function setter(attrId, value) {
+        console.log(orderState)
+        let newOrderParameters = [...orderState]
+        for (let param of newOrderParameters) {
+            if (param.attrId == attrId) {
+                param.value = value
+                param.toSave = param.oldValue != value
+                break;
+            }
+        }
+        setOrderState(newOrderParameters)
+        if (!params) return;
+        let newParams = {...params}
+        newParams[attrId] = value
+        setParams(newParams)
+    }
+
     function onSave() {
+        console.log(orderState)
         setReadOnly(!readOnly)
+        orderService.updateOrder({"id": orderId, "parameters":params}).then(()=>{
+            let newOrderParameters = [...orderState]
+            for (let p of newOrderParameters) {
+                p.oldValue = p.value
+                p.toSave = false
+            }
+        })
     }
 
     let buttons = [
@@ -114,32 +161,41 @@ function OrderItemBody({showOrderBody, orderParams}) {
         buttons.push(<Button onClick={onCancelEdit}>Отменить</Button>)
     }
 
+    function getParameterValue(params, attrId) {
+        for (let p of params) {
+            if (p.attrId == attrId) {
+                return p.value
+            }
+        }
+        return ""
+    }
+
     return showOrderBody && <div className="input__regstr">
         <div className="block__address">
             <div className="address">
                 <p>Адрес:</p>
             </div>
-            <InputParameter readOnly={readOnly} value={orderParams[ADDRESS_ATTR_ID]}/>
+            <InputParameter readOnly={readOnly} value={getParameterValue(orderState, ADDRESS_ATTR_ID)} setter={setter} attrId={ADDRESS_ATTR_ID}/>
         </div>
         <div className="block__time__date">
             <div className="section__block__time">
                 <div className="time__block">
                     <p>Время:</p>
                 </div>
-                <InputParameter readOnly={readOnly} value={orderParams[TIME_ATTR_ID]}/>
+                <InputParameter readOnly={readOnly} value={getParameterValue(orderState,TIME_ATTR_ID)} setter={setter} attrId={TIME_ATTR_ID}/>
             </div>
             <div className="section__block__date">
                 <div className="time__block">
                     <p>Дата:</p>
                 </div>
-                <InputParameter readOnly={readOnly} value={orderParams[DATA_ATTR_ID]}/>
+                <InputParameter readOnly={readOnly} value={getParameterValue(orderState,DATA_ATTR_ID)} setter={setter} attrId={DATA_ATTR_ID}/>
             </div>
         </div>
         <div className="block__text_array">
             <div className="text__array">
                 <p>Описание</p>
             </div>
-            <InputParameter readOnly={readOnly} value={orderParams[DESCRIPTION_ATTR_ID]}/>
+            <InputParameter textarea readOnly={readOnly} value={getParameterValue(orderState,DESCRIPTION_ATTR_ID)} setter={setter} attrId={DESCRIPTION_ATTR_ID}/>
         </div>
         <div className="btn__setting">
             <div className="btn__setting__container">
@@ -149,9 +205,14 @@ function OrderItemBody({showOrderBody, orderParams}) {
     </div>
 }
 
-function InputParameter({readOnly, value}) {
+function InputParameter({readOnly, value, textarea, setter, attrId}) {
     return <div>
-        {readOnly ? <p>{value}</p> : <input value={value}/>}
+        {readOnly ? <p>{value}</p> : textarea ?
+            <textarea
+                value={value}
+                onChange={(e) => setter(attrId, e.target.value)}/> :
+            <input value={value}
+                   onChange={(e) => setter(attrId, e.target.value)}/>}
     </div>
 }
 

@@ -7,7 +7,7 @@ class UserService {
     _userServiceApiBase = '/fixer/api/user'
 
     updateParameterValue = async (parameter, value) => {
-        console.log("asdasd")
+        console.log("updateParameterValue")
         console.log(value)
         await patch(serverUrl + this._userServiceApiBase +'/p', {
             phoneNumber: "89276976454",

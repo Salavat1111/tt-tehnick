@@ -33,19 +33,6 @@ async function createOrder(order) {
     })
 }
 
-async function getOrderModel() {
-    console.log("getOrderModel")
-    await axios.post(serverUrl + `/fixer/api/order/model`, {}, {
-        headers: {
-            Authorization: "Bearer " + Cookies.get('access_token'),
-            'X-CSRF-TOKEN': Cookies.get('csrf_token')
-        }
-    }).then(response => {
-        console.log('response.data')
-        console.log(response.data)
-    })
-}
-
 function CreateOrder() {
 
     const [technicalTypes, setTechnicalTypes] = useState([])
@@ -70,7 +57,7 @@ function CreateOrder() {
             </div>
 
             <div className="input__regstr">
-                <AddressInput handleValue={setAddress} placeholder="Адрес" editable ={true}/>
+                <AddressInput handleValue={setAddress} placeholder="Адрес" editable={true}/>
                 <SortPopup handleValue={setTechnicType} items={technicalTypes}/>
                 <div className="block__time-date">
                     <InputTimeDate handleValue={setTime} placeholder="время"/>
