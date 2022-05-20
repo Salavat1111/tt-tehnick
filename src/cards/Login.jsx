@@ -1,10 +1,10 @@
 import React from "react";
 import '../App.css';
-import {Button} from '../cards'
+import { Button } from '../cards'
 import NumberFormat from "react-number-format";
-import {post} from "axios";
+import { post } from "axios";
 import Cookies from 'js-cookie';
-import {pageAfterLogin, serverUrl} from "../common/AppConstants";
+import { pageAfterLogin, serverUrl } from "../common/AppConstants";
 
 function Login() {
     const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -12,9 +12,9 @@ function Login() {
     const handleSubmit = () => {
         post(
             serverUrl + "/auth/login", {
-                username: phoneNumber,
-                password: password
-            },
+            username: phoneNumber,
+            password: password
+        },
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -40,8 +40,8 @@ function Login() {
 
     return (
         (
-            <>
-                <div className="content">
+            <div className="wrapper__content-registr">
+                <div className="content-registr">
                     <div>
                         <div>
                             <h1 className="zgl__login--card--reg">Войдите</h1>
@@ -71,11 +71,13 @@ function Login() {
                             />
                             <div>
                             </div>
-                            <Button onClick={handleSubmit}>Войти</Button>
+                            <div className="blok__button--registr">
+                                <Button onClick={handleSubmit}>Войти</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         )
     );
 }

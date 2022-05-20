@@ -1,20 +1,20 @@
 import React from "react";
 import './settings.css';
-import {Button} from '../../cards';
-import {FaMapMarkerAlt, FaPhoneAlt} from "react-icons/fa"; //телефон
+import { Button } from '../../cards';
+import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"; //телефон
 import EmailInput from "../EmailInput";
 import AddressInput from "../AddressInput";
 import TextInput from "../TextInput";
 import EditableInput from "../inputs/EditableInput";
 
-function Settings({isLogin, user, userService}) {
+function Settings({ isLogin, user, userService }) {
     const [userSettings, setUserSettings] = React.useState({})
     const [editable, setEditable] = React.useState(false)
     const [savedInfo, setSavedInfo] = React.useState("")
     const [modelParams, setModelParams] = React.useState([])
 
     function setUserParameters(newParams) {
-        setUserSettings((prev) => ({...prev, parameters: newParams}))
+        setUserSettings((prev) => ({ ...prev, parameters: newParams }))
     }
 
     const onEditSettings = () => {
@@ -38,7 +38,7 @@ function Settings({isLogin, user, userService}) {
     };
 
     function onSaveSettings() {
-        let toSaveData = {...userSettings}
+        let toSaveData = { ...userSettings }
         toSaveData.parameters = userSettings.parameters.filter(p => {
             return p.toSave;
         });
@@ -80,9 +80,9 @@ function Settings({isLogin, user, userService}) {
 
     React.useEffect(() => {
         userService.getUserModel().then((response) => {
-                setModelParams(response)
-                console.log("setModelParams: " + JSON.stringify(response))
-            }
+            setModelParams(response)
+            console.log("setModelParams: " + JSON.stringify(response))
+        }
         ).catch((e) => {
             console.log("error to getUserMode")
             console.log(e)
@@ -104,7 +104,7 @@ function Settings({isLogin, user, userService}) {
                     newParams.push(p);
                 }
             }
-            let newUserSettins = {...user, parameters: newParams};
+            let newUserSettins = { ...user, parameters: newParams };
             setUserSettings(newUserSettins)
             return newUserSettins
         }
@@ -147,9 +147,9 @@ function Settings({isLogin, user, userService}) {
             if (p.type === "EMAIL") {
                 return <EmailInput {...inputParams} />
             } else if (p.type === "ADDRESS") {
-                return <AddressInput {...inputParams} setValue={changeUserParameter} img={<FaMapMarkerAlt/>}/>
+                return <AddressInput {...inputParams} setValue={changeUserParameter} img={<FaMapMarkerAlt />} />
             } else {
-                return <TextInput {...inputParams} img={<FaPhoneAlt/>}/>
+                return <TextInput {...inputParams} img={<FaPhoneAlt />} />
             }
         });
     }
@@ -168,7 +168,7 @@ function Settings({isLogin, user, userService}) {
                             label={"Имя"}
                             value={userSettings.firstName}
                             onChange={(e) => {
-                                setUserSettings((prev) => ({...prev, firstName: e.target.value}));
+                                setUserSettings((prev) => ({ ...prev, firstName: e.target.value }));
                             }}
                         />
                         {
@@ -177,7 +177,7 @@ function Settings({isLogin, user, userService}) {
                                     label={"Фамилия"}
                                     value={userSettings?.secondName}
                                     onChange={(e) => {
-                                        setUserSettings((prev) => ({...prev, secondName: e.target.value}));
+                                        setUserSettings((prev) => ({ ...prev, secondName: e.target.value }));
                                     }}
                                 />
                         }
@@ -186,9 +186,9 @@ function Settings({isLogin, user, userService}) {
                         <TextInput
                             paramName={"Телефон"}
                             placeHolder={userSettings?.phoneNumber}
-                            img={<FaPhoneAlt/>}
+                            img={<FaPhoneAlt />}
                             setValue={(e) => {
-                                setUserSettings((prev) => ({...prev, phoneNumber: e.target.value}));
+                                setUserSettings((prev) => ({ ...prev, phoneNumber: e.target.value }));
                             }}
                             propertyKey={"phoneNumber"}
                             editable={editable}
@@ -199,18 +199,7 @@ function Settings({isLogin, user, userService}) {
                 </div>
             </div>
 
-            <div className="btn__setting">
 
-                <div className="btn__setting__container">
-                    <Button onClick={onEditSettings}>
-                        {editable ? "Отменить" : "Редактировать"}
-                    </Button>
-                </div>
-                {savedInfo}
-                <div className="btn__setting__container">
-                    <Button onClick={onSaveSettings}>Сохранить</Button>
-                </div>
-            </div>
         </div>;
     }
 
@@ -227,6 +216,18 @@ function Settings({isLogin, user, userService}) {
                         <h1 className="zgl__login--card--reg">Войти</h1>
                     </div>
                 }
+            </div>
+            <div className="btn__setting">
+
+                <div className="btn__setting__container">
+                    <Button onClick={onEditSettings}>
+                        {editable ? "Отменить" : "Редактировать"}
+                    </Button>
+                </div>
+                {savedInfo}
+                <div className="btn__setting__container">
+                    <Button onClick={onSaveSettings}>Сохранить</Button>
+                </div>
             </div>
         </div>
     );
