@@ -2,7 +2,7 @@ import React from "react";
 import '../App.css';
 
 
-function InputTimeDate({placeholder, onChange,}) {
+function InputTimeDate({placeholder, onChange}) {
     return (
         <div className="input__time-date">
             <input type="text"
