@@ -214,3 +214,17 @@
     justify-content: center;
 } */
 /*мини блок выподающего меню с даными*/
+
+
+
+.plug__content {
+    width: 80%;
+    height: 400px;
+    margin: auto;
+    background-color: azure;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

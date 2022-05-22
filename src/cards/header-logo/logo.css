@@ -12,11 +12,11 @@
 
 .border__line-block {
     border-left: 1px solid #C4C4C4;
-    height: 90px;
+    height: 60px;
     position: relative;
     left: 0px;
     margin-left: 0px;
-    top: 5px;
+    top: 20px;
 }
 
 /*---------Header---------*/

@@ -1,7 +1,7 @@
 import React from "react";
 import react, { useEffect, useState } from "react";
 import './AppOrder.css';
-import { Button, InputText } from '../../cards';
+import { Button } from '../../cards';
 import { FaAngleDown } from "react-icons/fa"; // стрелка вниз
 import { serverUrl } from "../../common/AppConstants";
 import axios from "axios";
@@ -29,14 +29,21 @@ async function getOrders() {
 
 function СardOrder() {
     const [orderList, setOrderList] = useState([])
+    const [message, setMessage] = useState('')
+
 
     useEffect(
         () => {
             getOrders().then(response => {
-                let res = response.map(order => {
-                    return <OrderItem key={order?.id} name={order.parameters[0]?.value} />
-                })
-                setOrderList(res)
+                if (response.length === 0) {
+                    setMessage(<div className="plug__content">{message}</div>)
+                } else {
+                    let res = response.map(order => {
+                        return <OrderItem key={order?.id} name={order.parameters[0]?.value} />
+                    })
+                    setOrderList(res)
+                }
+
             })
         }, []
     )
@@ -47,10 +54,11 @@ function СardOrder() {
                 <Button>Мои заказы</Button>
                 <a>История</a>
             </div>
-            <OrderItem key={"1"} name={"Холодильник"} />
+            {/* <OrderItem key={"1"} name={"Холодильник"} />
             <OrderItem key={"2"} name={"Печка"} />
-            <OrderItem key={"3"} name={"Телевизор"} />
+            <OrderItem key={"3"} name={"Телевизор"} /> */}
             {orderList}
+            {message}
         </>
     );
 }
@@ -74,7 +82,6 @@ function OrderItem({ order, name }) {
                 <div className="block__order-section">
                     <p className="">В работе</p>
                 </div>
-
 
 
                 <div className='svg__order--bl'>
@@ -147,7 +154,6 @@ function OrderItem({ order, name }) {
 
                 </div>
             </div>
-
 
 
         ) : <div></div>

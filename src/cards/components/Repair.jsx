@@ -19,7 +19,7 @@ async function getTechnicalTypes() {
     return res.data;
 }
 
-function Repair({ user, userService, ф }) {
+function Repair({ user, userService, }) {
     const [technicalTypes, setTechnicalTypes] = useState([])
     const [order, setOrder] = useState({ "status": "OPEN", "parameters": [] })
 
