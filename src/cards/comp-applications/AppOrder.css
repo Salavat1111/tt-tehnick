@@ -14,7 +14,7 @@
 .order__block--visible {
     width: 80%;
     height: 80px;
-    background-color: #d7d7d7;
+    background-color: #b3b3b3;
     border-radius: 15px;
     margin: 20px auto;
     display: flex;
@@ -221,10 +221,12 @@
     width: 80%;
     height: 400px;
     margin: auto;
-    background-color: azure;
+    background-color: #dddddd;
     margin-top: 10px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
+    color: #9d9d9d;
 }

@@ -88,7 +88,7 @@ function Repair({ user, userService, }) {
     </div>
     function HendlervisibleContainer() {
         setVisibleContainer(!visibleContainer)
-    } setTimeout(() => { setVisibleContainer('') }, 3000);
+    } setTimeout(() => { setVisibleContainer('') }, 5000);
     // setTimeout(() => { setVisibleContainer('') }, 3000);
 
 
@@ -161,7 +161,7 @@ function Repair({ user, userService, }) {
                             }} />
                             <QuestionBlock
                                 icons={[<FaInfoCircle />]}
-                                itemsQuestionBlock={['Напишите любую для Вас удобную дату. Пример "22.02.2022"']}
+                                itemsQuestionBlock={['Напишите удобную для вас дату. Пример "22.02.2022"']}
                             />
                         </div>
                         <textarea placeholder="напишите что случилось"

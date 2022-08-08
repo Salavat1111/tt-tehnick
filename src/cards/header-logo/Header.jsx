@@ -1,14 +1,22 @@
 import React from "react";
 import './logo.css';
-import {Logo, Menu,} from '../header-logo';
-import {loginUrl, userSettingsUrl} from "../../common/AppConstants";
-import {Link} from "react-router-dom";
+import { Logo, Menu, } from '../header-logo';
+import { loginUrl, userSettingsUrl } from "../../common/AppConstants";
+import { Link } from "react-router-dom";
 
-function Header({items, isLogin, user}) {
+function Header({ items, isLogin, user, triad }) {
+
+
+
+
+
+
+
     return (
         <div className="wrapper__container-header">
-            <Logo/>
-            <Menu items={items}/>
+            <Logo />
+            <Menu items={items} triad={triad} isLogin={isLogin} />
+            {/* {rebtock} */}
             <div className="border__line-block"></div>
             <div className="block__lastName">
                 {

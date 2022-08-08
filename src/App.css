@@ -105,7 +105,7 @@ select {
 }
 
 body {
-  background-color: #363636;
+  background-color: #dddddd;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */
@@ -187,7 +187,7 @@ a {
 
 /*===========стили div в cards Registration.jsx=============*/
 .bl__registr p {
-  margin: -8px 0px 35px 0px;
+  margin: -8px 0px 16px 0px;
   text-align: center;
   color: #959595;
   font-family: 'Nunito Sans', sans-serif;
@@ -215,7 +215,7 @@ a {
 
 .zgl__login--card--reg {
   margin-top: 34px;
-  margin-bottom: 40px;
+  margin-bottom: 14px;
   font-size: 29px;
   font-family: 'Nunito Sans', sans-serif;
   text-align: center;
@@ -223,10 +223,21 @@ a {
   padding-top: 40px;
 }
 
-.blok__button--registr {
-  margin-top: 75px;
+.block__zglshcka {
+  width: 10px;
+  height: 10px;
+  margin: 0px 0px 30px 0px;
 }
 
+.blok__button--registr {
+  margin-top: 78px;
+}
+
+.block__zglsk__login {
+  width: 10px;
+  height: 10px;
+  margin: 0px 0px 30px 0px;
+}
 
 .cont__bl--card--reg {
   margin-bottom: 43px;
@@ -301,6 +312,26 @@ a {
 
 }
 
+.container__blockError {
+  display: flex;
+  width: 80%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.error__container__text {
+  position: absolute;
+  width: 200px;
+  color: red;
+}
+
+.error__container__namber {
+  position: absolute;
+  width: 200px;
+  color: red;
+}
+
 /*------------Блок Набор номера при регистрации-------------*/
 /*------------Блок Набор password при регистрации-------------*/
 .wrapper__content-password {
@@ -319,7 +350,7 @@ a {
 }
 
 .bl__password {
-  margin-top: 115px;
+  margin-top: 100px;
 }
 
 .input__regstr-password input {

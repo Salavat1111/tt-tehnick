@@ -47,6 +47,7 @@ function Login() {
                             <h1 className="zgl__login--card--reg">Войдите</h1>
                             <div className="bl__registr">
                                 <p>Заполните поля, чтобы войти в аккаунт</p>
+                                <div className="block__zglsk__login"></div>
                             </div>
                         </div>
                     </div>

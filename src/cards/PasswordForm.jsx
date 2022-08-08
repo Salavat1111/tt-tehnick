@@ -3,14 +3,14 @@ import '../App.css';
 import './step/step.css'
 
 
-import {Button, InputPassword,} from '../cards'
-import {MainContext} from "../App";
+import { Button, InputPassword, } from '../cards'
+import { MainContext } from "../App";
 import axios from "axios";
-import {pageAfterLogin, serverUrl} from "../common/AppConstants";
+import { pageAfterLogin, serverUrl } from "../common/AppConstants";
 import Cookies from "js-cookie";
 
 function PasswordForm() {
-    const {user, setUser} = React.useContext(MainContext);
+    const { user, setUser } = React.useContext(MainContext);
 
     function handleChangeInput(propertyName, propertyValue) {
         user[propertyName] = propertyValue
@@ -41,13 +41,14 @@ function PasswordForm() {
                         <div>
                             <div>
                                 <h1 className="zgl__login--card--reg">Придумайте пароль</h1>
+                                <div className="block__zglshcka"></div>
                             </div>
                         </div>
                         <div className="display__input--field">
                             <div className="input__regstr-password">
-                                <InputPassword handleFunc={handleChangeInput} inputKey="password" text="Пароль"/>
+                                <InputPassword handleFunc={handleChangeInput} inputKey="password" text="Пароль" />
                                 <InputPassword handleFunc={handleChangeInput} inputKey="cpassword"
-                                               text="Повторите пароль"/>
+                                    text="Повторите пароль" />
                                 <div>
                                 </div>
                                 <div className="bl__password">

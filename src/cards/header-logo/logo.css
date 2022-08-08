@@ -22,16 +22,7 @@
 /*---------Header---------*/
 
 /*---------logo---------*/
-.conteinet__logo {
-    display: flex;
-    padding-top: 13px;
-    padding-left: 11px;
-    width: 249px;
-    background: #666565;
-    margin-top: 12px;
-    height: 78px;
-    border-radius: 18px;
-}
+
 
 .block__line-left {
     width: 50px;
@@ -55,11 +46,44 @@
     left: -14px;
 }
 
-.logo__text h1 a {
+/* .logo__text h1 a {
     font-family: 'Rubik Mono One', sans-serif;
     color: #FFED50;
     font-weight: 900;
     font-size: 37px;
+} */
+.conteinet__logo {
+    display: flex;
+    padding-top: 25px;
+    /* padding-left: 11px; */
+    width: 160px;
+    background: #6C6C6C;
+    /* margin-top: 12px; */
+    height: 100px;
+    text-align: center;
+    border-radius: 11px;
+}
+
+.logo__text {
+    width: 100%;
+    height: auto;
+    line-height: 19px;
+}
+
+.logo__text-h1 a {
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    color: #f3f3f3;
+    font-weight: 900;
+    font-size: 55px;
+}
+
+.logo__text-h2 a {
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    color: #FFED50;
+    font-weight: 900;
+    font-size: 30px;
 }
 
 .common__circle {

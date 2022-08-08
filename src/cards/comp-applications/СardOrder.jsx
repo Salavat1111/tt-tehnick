@@ -30,20 +30,33 @@ async function getOrders() {
 function СardOrder() {
     const [orderList, setOrderList] = useState([])
     const [message, setMessage] = useState('')
-
+    const [messageText, setMessageText] = useState('Пусто')
 
     useEffect(
         () => {
             getOrders().then(response => {
                 if (response.length === 0) {
+                    setMessage(<div className="plug__content">{messageText}</div>)
+                    {
+                        let res = response.map(order => {
+                            return <OrderItem key={order?.id} name={order.parameters[0]?.value} />
+                        })
+                        setOrderList(res)
+                    }
+                } else if (response.length <= 3) {
                     setMessage(<div className="plug__content">{message}</div>)
+                    {
+                        let res = response.map(order => {
+                            return <OrderItem key={order?.id} name={order.parameters[0]?.value} />
+                        })
+                        setOrderList(res)
+                    }
                 } else {
                     let res = response.map(order => {
                         return <OrderItem key={order?.id} name={order.parameters[0]?.value} />
                     })
                     setOrderList(res)
                 }
-
             })
         }, []
     )
