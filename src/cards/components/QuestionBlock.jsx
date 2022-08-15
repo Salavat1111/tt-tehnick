@@ -2,7 +2,7 @@ import React from 'react';
 import './sort.css';
 
 
-function QuestionBlock({ outline, items, icons }) {
+function QuestionBlock({ outline, itemsQuestionBlock, icons, activeItem, setActiveItem, onSelectItem }) {
     const [visibleQuestion, setVisibleQuestion] = React.useState(false);
     const sortRef = React.useRef();
 
@@ -21,6 +21,11 @@ function QuestionBlock({ outline, items, icons }) {
         document.body.addEventListener('click', handleOutsideClickQuestion);
     }, []);
 
+    // const [activeItem, setActiveItem] = React.useState(0)
+    // const onSelectItem = (index) => {
+    //     setActiveItem(index)
+    // }
+    // const activeLabel = itemsQuestionBlock[activeItem];
 
     return (
         <>
@@ -33,9 +38,15 @@ function QuestionBlock({ outline, items, icons }) {
             </div>
 
             {visibleQuestion && <div className='sortpopup__wrapper-quest'>
-                <div>
-                    {items.map((text, index) => (
-                        <p key={`${index}`}> {text}</p>
+                <div className='section__items'>
+                    {itemsQuestionBlock.map((text, index) => (
+                        <p
+                            key={`${text}${index}`}
+                            className={activeItem === index ? 'active__p active' : ''}
+                            onClick={() => onSelectItem(index)}
+                        >
+                            {text}
+                        </p>
                     ))}
                 </div>
             </div>}

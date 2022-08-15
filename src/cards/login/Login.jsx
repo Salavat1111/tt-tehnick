@@ -1,10 +1,10 @@
 import React from "react";
-import '../../App.css';
-import {Button} from '../index'
+import '../App.css';
+import { Button } from '../cards'
 import NumberFormat from "react-number-format";
 import {post} from "axios";
 import Cookies from 'js-cookie';
-import {pageAfterLogin, serverUrl} from "../../common/AppConstants";
+import { pageAfterLogin, serverUrl } from "../common/AppConstants";
 
 function Login() {
     const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -12,9 +12,9 @@ function Login() {
     const handleSubmit = () => {
         post(
             serverUrl + "/auth/login", {
-                username: phoneNumber,
-                password: password
-            },
+            username: phoneNumber,
+            password: password
+        },
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -41,13 +41,13 @@ function Login() {
     return (
         (
             <div className="wrapper__content-registr">
-                <div className={"content-registr"}>
-
+                <div className="content-registr">
                     <div>
                         <div>
                             <h1 className="zgl__login--card--reg">Войдите</h1>
                             <div className="bl__registr">
                                 <p>Заполните поля, чтобы войти в аккаунт</p>
+                                <div className="block__zglsk__login"></div>
                             </div>
                         </div>
                     </div>
@@ -70,10 +70,11 @@ function Login() {
                                 className="field"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <div>
+                            </div>
                             <div className="blok__button--registr">
                                 <Button onClick={handleSubmit}>Войти</Button>
                             </div>
-
                         </div>
                     </div>
                 </div>

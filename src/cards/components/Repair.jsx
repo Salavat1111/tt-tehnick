@@ -78,6 +78,41 @@ function Repair({user, userService}) {
         setOrderParameter(parameter);
     }
 
+
+    // пробросил из компонента QuestionBlock itemsQuestionBlock, activeItem
+    // const activeLabel = itemsQuestionBlock[activeItem];
+    const [activeItem, setActiveItem] = React.useState(0)
+    const onSelectItem = (index) => {
+        setActiveItem(index)
+    }
+
+    const itemsQuestionBlock = ['c 8:00 до 12:00', 'с 12:00 до 18:00', 'c 18:00 до 20:00']
+    const activeLabel = itemsQuestionBlock[activeItem]
+    //прокинуть от родительского компонента к дочернему все стейты и масси
+    // пробросил из компонента QuestionBlock itemsQuestionBlock, activeItem
+
+
+
+    //visible--conteiner пробник------------<<<<<<<<<<<<<<<
+    const [visibleContainer, setVisibleContainer] = React.useState()
+    const bablick = <div className='visible__container active'>
+        <h1 className='visible__text-cotainer'>Успешно сохранено!</h1>
+    </div>
+    function HendlervisibleContainer() {
+        setVisibleContainer(!visibleContainer)
+    } setTimeout(() => { setVisibleContainer('') }, 5000);
+    // setTimeout(() => { setVisibleContainer('') }, 3000);
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className="wrapper__content-repair">
             <div className="content-registr-repair">
@@ -97,7 +132,7 @@ function Repair({user, userService}) {
                                     "name": "Что чиним",
                                     "attrId": "1",
                                     "type": "LIST",
-                                    "value": value
+                                    "value": e.target.value /*active list item*/
                                 };
                                 setOrderParameter(parameter);
                             }}
@@ -105,17 +140,24 @@ function Repair({user, userService}) {
                         <div className="block__time-date">
                             <QuestionBlock
                                 outline
-                                icons={[<FaInfoCircle/>]}/>
-                            <InputTimeDate placeholder="время" onChange={(e) =>{
-                                let parameter = {
-                                    "name": "Время",
-                                    "attrId": "46",
-                                    "type": "TIME",
-                                    "value": e.target.value
-                                };
-                                setOrderParameter(parameter);
-                            }}/>
-                            <InputTimeDate placeholder="дата" onChange={(e) =>{
+                                icons={[<FaInfoCircle />]}
+                                itemsQuestionBlock={itemsQuestionBlock}
+                                activeItem={activeItem}
+                                setActiveItem={setActiveItem}
+                                onSelectItem={onSelectItem}
+                            />
+                            <InputTimeDate placeholder={activeLabel}
+
+                                onChange={(e) => {
+                                    let parameter = {
+                                        "name": "Время",
+                                        "attrId": "46",
+                                        "type": "TIME",
+                                        "value": e.target.value
+                                    };
+                                    setOrderParameter(parameter);
+                                }} />
+                            <InputTimeDate placeholder="дата" onChange={(e) => {
                                 let parameter = {
                                     "name": "Дата",
                                     "attrId": "8",
@@ -125,26 +167,30 @@ function Repair({user, userService}) {
                                 setOrderParameter(parameter);
                             }}/>
                             <QuestionBlock
-                                icons={[<FaInfoCircle/>]}
-                                items={['Напишите любую для Вас удобную дату. Пример "22.02.2022"']}
+                                icons={[<FaInfoCircle />]}
+                                itemsQuestionBlock={['Напишите удобную для вас дату. Пример "22.02.2022"']}
                             />
                         </div>
                         <textarea placeholder="напишите что случилось"
-                                  onChange={(e) =>{
-                            let parameter = {
-                                "name": "Напишите что произошло",
-                                "attrId": "6",
-                                "type": "TEXT",
-                                "value": e.target.value
-                            };
-                            setOrderParameter(parameter);
-                        }}></textarea>
+                            onChange={(e) => {
+                                let parameter = {
+                                    "name": "Напишите что произошло",
+                                    "attrId": "6",
+                                    "type": "TEXT",
+                                    "value": e.target.value
+                                };
+                                setOrderParameter(parameter);
+                            }}></textarea>
                     </div>
                 </div>
             </div>
-            <div>
-                <Button onClick={onCreate}>отправить</Button>
+            <div onClick={HendlervisibleContainer}>
+                <Button onClick={onCreate} >отправить</Button>
             </div>
+            {/*-------------------------------------------------------------------------------------*/}
+            {/* {<div className={visibleContainer ? 'visible__container active' : 'visible__container'}> */}
+            {visibleContainer && bablick}
+            {/*-------------------------------------------------------------------------------------*/}
         </div>
     );
 }

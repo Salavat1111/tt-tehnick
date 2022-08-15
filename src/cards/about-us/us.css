@@ -1,0 +1,16 @@
+.about-us__homepage {
+    display: flex;
+    width: 80%;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.about-us__container {
+    width: 90%;
+    background-color: #efefef;
+    height: 400px;
+    margin: auto;
+    border-radius: 20px;
+}

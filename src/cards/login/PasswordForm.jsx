@@ -1,10 +1,10 @@
 import React from "react";
-import '../../App.css';
-import '../step/step.css'
+import '../App.css';
+import './step/step.css'
 
 
-import {Button, InputPassword,} from '../index'
-import {MainContext} from "../../App";
+import { Button, InputPassword, } from '../cards'
+import { MainContext } from "../App";
 import axios from "axios";
 import {loginUrl, pageAfterLogin, serverUrl} from "../../common/AppConstants";
 import Cookies from "js-cookie";
@@ -36,18 +36,20 @@ function PasswordForm() {
 
     return (
         <>
-            <div className="wrapper__content-registr">
-                <div className="content-registr">
+            <div className="wrapper__content-password">
+                <div className="content-registr-password">
+                    <div className="content">
                         <div>
                             <div>
                                 <h1 className="zgl__login--card--reg">Придумайте пароль</h1>
+                                <div className="block__zglshcka"></div>
                             </div>
                         </div>
                         <div className="display__input--field">
                             <div className="input__regstr-password">
-                                <InputPassword handleFunc={handleChangeInput} inputKey="password" text="Пароль"/>
+                                <InputPassword handleFunc={handleChangeInput} inputKey="password" text="Пароль" />
                                 <InputPassword handleFunc={handleChangeInput} inputKey="cpassword"
-                                               text="Повторите пароль"/>
+                                    text="Повторите пароль" />
                                 <div>
                                 </div>
                                 <div className="bl__password">
@@ -63,6 +65,7 @@ function PasswordForm() {
                                 <p>Уже есть аккаунт? <Link to={loginUrl}>Войти</Link> </p>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </>

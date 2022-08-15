@@ -10,6 +10,8 @@ function Logo() {
             <div className="block__line-left"></div>
             <div className="logo__text">
                 <h1><a href={welcomePage}>Техник+</a></h1>
+                <h1 className="logo__text-h1"><Link to={""}>твой</Link></h1>
+                <h1 className="logo__text-h2"><Link to={""}>техник</Link></h1>
             </div>
             <div className="block__line-right"></div>
         </div>

@@ -252,6 +252,18 @@ function Settings({isLogin, user, userService}) {
                     </div>
                 }
             </div>
+            <div className="btn__setting">
+
+                <div className="btn__setting__container">
+                    <Button onClick={onEditSettings}>
+                        {editable ? "Отменить" : "Редактировать"}
+                    </Button>
+                </div>
+                {savedInfo}
+                <div className="btn__setting__container">
+                    <Button onClick={onSaveSettings}>Сохранить</Button>
+                </div>
+            </div>
         </div>
     );
 }
