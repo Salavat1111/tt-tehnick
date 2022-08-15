@@ -103,16 +103,6 @@ function Repair({user, userService}) {
     } setTimeout(() => { setVisibleContainer('') }, 5000);
     // setTimeout(() => { setVisibleContainer('') }, 3000);
 
-
-
-
-
-
-
-
-
-
-
     return (
         <div className="wrapper__content-repair">
             <div className="content-registr-repair">
@@ -126,8 +116,8 @@ function Repair({user, userService}) {
                                       editable visible isFlex/>
                         <SortPopup
                             items={technicalTypes}
-                            handleValue={(value) =>{
-                                console.log("SortPopup: " + value)
+                            handleValue={(e) =>{
+                                console.log("SortPopup: " + e)
                                 let parameter = {
                                     "name": "Что чиним",
                                     "attrId": "1",

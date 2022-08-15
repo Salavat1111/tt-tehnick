@@ -1,10 +1,10 @@
 import React from "react";
-import '../App.css';
-import './step/step.css'
+import '../../App.css';
+import '../step/step.css'
 
 
-import { Button, InputPassword, } from '../cards'
-import { MainContext } from "../App";
+import { Button, InputPassword, } from '../../cards'
+import { MainContext } from "../../App";
 import axios from "axios";
 import {loginUrl, pageAfterLogin, serverUrl} from "../../common/AppConstants";
 import Cookies from "js-cookie";

@@ -6,9 +6,6 @@ export const logoutUrl = '/auth/logout';
 export const welcomePage = '/';
 export const pageAfterLogin = userSettingsUrl;
 
-
-
-
 export const ADDRESS_ATTR_ID = 11;
 export const DATA_ATTR_ID = 8;
 export const TIME_ATTR_ID = 46;

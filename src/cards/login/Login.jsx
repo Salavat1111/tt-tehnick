@@ -1,10 +1,10 @@
 import React from "react";
-import '../App.css';
-import { Button } from '../cards'
+import '../../App.css';
+import { Button } from '../../cards'
 import NumberFormat from "react-number-format";
 import {post} from "axios";
 import Cookies from 'js-cookie';
-import { pageAfterLogin, serverUrl } from "../common/AppConstants";
+import { pageAfterLogin, serverUrl } from "../../common/AppConstants";
 
 function Login() {
     const [phoneNumber, setPhoneNumber] = React.useState("");

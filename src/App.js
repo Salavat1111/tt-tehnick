@@ -7,11 +7,13 @@ import { BtnBurger, HistoryMap, HomeRepair, PasswordForma, Registration, Repair,
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import { Header } from './cards/header-logo'
-import Login from "./cards/Login";
 import UserService from "./servises/UserService";
 import { Footer } from "./cards/footer";
 import { TechnicalStaff } from "./cards/technical-staff"
 import { AboutUs } from "./cards/about-us"
+import Login from "./cards/login/Login";
+import LoginPopup from "./cards/login/LoginPopup";
+import RegistrationPopup from "./cards/login/RegistrationPopup";
 const stepsComponents = {
   0: HomeRepair,
   1: Registration,
@@ -80,13 +82,9 @@ function App() {
               <Route path="/rooms/2" element={<СardOrder />} />
               {/* <Route path="/rooms/3" element={<HistoryMap />} /> */}
               <Route path="/rooms/4" element={<Settings isLogin={isLogin} user={user} userService={userService} triad={triad} />} />
-              <Route path="/l" element={< Login />} />
-              <Route
-                path="/"
-                element={<MainContext.Provider value={{ step, onNextStep, user, setUser }}>
-                  <Step />
-                </MainContext.Provider>}
-              />
+              <Route path="/l" element={<LoginPopup login={userService.login}/>}/>
+              <Route path="/r" element={<RegistrationPopup createUser={userService.creteUser} user={user} setUser={setUser}/>}/>
+              <Route path="/" element={<HomeRepair isLogin={isLogin}/>}/>
             </Routes>
 
           </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import '../App.css';
-import { MainContext } from '../App';
+import '../../App.css';
+import { MainContext } from '../../App';
 
 
-import { Button } from '../cards'
+import { Button } from '../../cards'
 import NumberFormat from "react-number-format";
 
 function Registration({ disabled }) {
