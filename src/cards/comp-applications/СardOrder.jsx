@@ -29,19 +29,45 @@ function PageHeader() {
 function Orders() {
     const orderService = new OrderService();
     const [orderList, setOrderList] = useState([])
+    const [message, setMessage] = useState('')
+    const [messageText, setMessageText] = useState('Пусто')
+
 
     useEffect(
         () => {
             orderService.getOrders().then(response => {
-                let res = response.map(order => {
-                    console.log(order)
-                    return <OrderItem key={order?.id} order={order} orderService={orderService}/>
-                })
-                setOrderList(res)
+                if (response.length === 0) {
+                    setMessage(<div className="plug__content">{messageText}</div>)
+                    {
+                        let res = response.map(order => {
+                            return <OrderItem key={order?.id} order={order} orderService={orderService}/>
+                        })
+                        setOrderList(res)
+                    }
+                } else if (response.length <= 3) {
+                    setMessage(<div className="plug__content">{message}</div>)
+                    {
+                        let res = response.map(order => {
+                            return <OrderItem key={order?.id} order={order} orderService={orderService}/>
+                        })
+                        setOrderList(res)
+                    }
+                } else {
+                    let res = response.map(order => {
+                        return <OrderItem key={order?.id} order={order} orderService={orderService}/>
+                    })
+                    setOrderList(res)
+                }
             })
         }, []
     )
-    return <>{orderList}</>
+
+    return (
+        <>
+            {orderList}
+            {message}
+        </>
+    );
 }
 
 function OrderItem({order, orderService}) {
@@ -216,7 +242,6 @@ function InputParameter({readOnly, value, textarea, setter, attrId}) {
     </div>
 }
 
-// const OrderItemContainer = styled.div`${(showOrderBody) => {return showOrderBody ? css`order--bl active` : css`order--bl`;}}`
 function OrderItemContainer({showOrderBody, children}) {
     return <div className={showOrderBody ? 'order--bl active' : 'order--bl'}>
         {children}
